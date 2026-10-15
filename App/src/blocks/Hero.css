@@ -10,7 +10,6 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(3, 1fr);
-  gap: 4px;
 }
 
 .hero__foto {
@@ -20,40 +19,74 @@
   object-position: center;
   opacity: 0;
   animation: aparecer 0.6s ease forwards;
-  animation-delay: calc(var(--i) * 120ms); /* una tras otra */
+  animation-delay: calc(var(--i) * 120ms);
+}
+
+.hero__container {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
 }
 
 .hero__logo {
-  position: absolute;
-  inset: 0;
-  margin: auto;
   width: min(70vw, 420px);
   opacity: 0;
   animation: logo-entra 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
-  animation-delay: 2s; /* después de que salen las fotos */
+  animation-delay: 2s;
 }
 
-.hero__cta {
-  position: absolute;
+.hero__btn {
   bottom: 8vh;
-  left: 50%;
   transform: translateX(-50%);
   opacity: 0;
   animation: aparecer 0.6s ease forwards;
   animation-delay: 2.8s;
+  font-family: "Outfit", sans-serif;
+  font-size: 20px;
+  border: 1.5px solid #fcb045;
+  background: #fcb045;
+  color: #fff;
+  font-weight: 500;
+  width: 120px;
+  height: 41px;
+}
+
+.hero__btn:hover {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 149, 0, 1) 0%,
+    rgba(252, 176, 69, 1) 50%,
+    rgba(255, 230, 186) 100%
+  );
+  color: #fff;
 }
 
 @keyframes aparecer {
-  from { opacity: 0; transform: scale(1.08); }
-  to   { opacity: 1; transform: scale(1); }
+  from {
+    opacity: 0;
+    transform: scale(1.08);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 @keyframes logo-entra {
-  from { opacity: 0; transform: scale(0.8); }
-  to   { opacity: 1; transform: scale(1); }
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
-/* respeta a quien desactiva animaciones */
 @media (prefers-reduced-motion: reduce) {
   .hero__foto,
   .hero__logo,

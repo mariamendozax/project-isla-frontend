@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import Hero from './Hero.jsx'
+import Menu from './Menu.jsx'
 
 function App() {
   const [verMenu, setVerMenu] = useState(false);
@@ -9,7 +10,7 @@ function App() {
       {!verMenu ? (
         <Hero onEnter={() => setVerMenu(true)} />
       ) : (
-        <p>Aquí va el menú 🌮</p>
+        <Menu />
       )}
     </>
   );
