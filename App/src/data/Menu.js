@@ -1,3 +1,13 @@
+import barbacoa from "../../images/barbacoa.png";
+import carnitas from "../../images/carnitas.png";
+import chilaquiles from "../../images/chilaquiles.png";
+import desayuno from "../../images/desayuno.png";
+import guac from "../../images/guac.png";
+import quesabirria from "../../images/quesabirria.png";
+import veggie from "../../images/veggie.png";
+import flautas from "../../images/flautas.png";
+import birriamen from "../../images/birriamen.png";
+
 export const textos = {
   es: {
     titulo: "México Lindo y qué Rico",
@@ -64,40 +74,39 @@ export const categorias = [
     articulos: [
       {
         id: 1,
-        nombre: "Taco de birria",
+        nombre: { es: "Taco de birria", en: "Birria Taco(beef)" },
         descripcion: {
           es: "",
           en: "Mexican dish: marinated beef with chili peppers in spiced broth.",
         },
         precio: 40,
         extras: [queso(10)],
-        imagen: tacoBirria,
       },
       {
         id: 2,
-        nombre: "Taco de barbacoa de res",
+        nombre: { es: "Taco de barbacoa de res", en: "Barbacoa Taco(beef)" },
         descripcion: {
           es: "",
           en: "Mexican dish: shredded meat in spiced broth.",
         },
         precio: 40,
         extras: [queso(10)],
-        imagen: tacoBarbacoa,
+        foto: barbacoa,
       },
       {
         id: 3,
-        nombre: "Taco de carnitas",
+        nombre: { es: "Taco de carnitas", en: "Carnitas Taco(Pork)" },
         descripcion: {
           es: "",
           en: "Mexican dish: small, shredded pieces of crisp roast pork.",
         },
         precio: 40,
         extras: [queso(10)],
-        imagen: tacoCarnitas,
+        foto: carnitas,
       },
       {
         id: 4,
-        nombre: "Taco de pollo",
+        nombre: { es: "Taco de pollo", en: "Chicken Taco" },
         descripcion: {
           es: "Pollo a la plancha",
           en: "Grilled chicken",
@@ -113,7 +122,7 @@ export const categorias = [
     articulos: [
       {
         id: 5,
-        nombre: "Torta de birria",
+        nombre: { es: "Torta de birria", en: "Birria Sandwich" },
         descripcion: {
           es: "",
           en: "Mexican sandwich: marinated beef with chili peppers in spiced broth.",
@@ -123,7 +132,10 @@ export const categorias = [
       },
       {
         id: 6,
-        nombre: "Torta de barbacoa de res",
+        nombre: {
+          es: "Torta de barbacoa de res",
+          en: "Barbacoa Sandwich(beef)",
+        },
         descripcion: {
           es: "",
           en: "Mexican sandwich: shredded beef in spiced broth.",
@@ -133,7 +145,10 @@ export const categorias = [
       },
       {
         id: 7,
-        nombre: "Torta de carnitas",
+        nombre: {
+          es: "Torta de carnitas",
+          en: "Carnitas Sandwich(Pork)",
+        },
         descripcion: {
           es: "",
           en: "Mexican sandwich: small, shredded pieces of crisp roast pork.",
@@ -143,7 +158,10 @@ export const categorias = [
       },
       {
         id: 8,
-        nombre: "Torta de pollo",
+        nombre: {
+          es: "Torta de pollo",
+          en: "Chicken Sandwich",
+        },
         descripcion: {
           es: "Pollo a la plancha",
           en: "Grilled chicken",
@@ -159,17 +177,17 @@ export const categorias = [
     articulos: [
       {
         id: 9,
-        nombre: "Quesabirria",
+        nombre: { es: "Quesabirria", en: "Quesabirria" },
         descripcion: {
           es: "",
           en: "marinated beef with chili peppers in a cheesy flour tortilla, with a birria soup for dipping.",
         },
         precio: 60,
-        imagen: quesabirria,
+        foto: quesabirria,
       },
       {
         id: 10,
-        nombre: "Consomé Litro",
+        nombre: { es: "Consomé Litro", en: "Beef Soup" },
         descripcion: {
           es: "...",
           en: "Delicious beef and spiced soup with shredded beef. Great for hangover.",
@@ -178,37 +196,40 @@ export const categorias = [
       },
       {
         id: 11,
-        nombre: "Birriamen",
+        nombre: { es: "Birriamen", en: "Birriamen" },
         descripcion: {
           es: "...",
           en: "Japanese ramen fusion with Mexican birria, and cheese. Delicious!",
         },
         precio: 120,
-        imagen: birriamen,
+        foto: birriamen,
       },
       {
         id: 12,
-        nombre: "Flautas de barbacosa de res",
+        nombre: {
+          es: "Flautas de barbacosa de res",
+          en: "Barbacoa Flautas(beef)",
+        },
         descripcion: {
           es: "",
           en: "Crispy rolled tacos made with slow-cooked shredded barbacoa, topped with lettuce, cream and cheese.",
         },
         precio: 120,
-        imagen: flautas,
+        foto: flautas,
       },
       {
         id: 13,
-        nombre: "Guacamole con totopos",
+        nombre: { es: "Guacamole", en: "Guacamole" },
         descripcion: {
-          es: "",
+          es: "Guacamole con totopos",
           en: "Freshly made guacamole with tortilla chips.",
         },
         precio: 150,
-        imagen: guacamole,
+        foto: guac,
       },
       {
         id: 14,
-        nombre: "Quesadillas",
+        nombre: { es: "Quesadillas", en: "Quesadillas" },
         descripcion: {
           es: "Orden de tres quesadillas con tortilla de harina.",
           en: "Three quesadillas with flour tortilla.",
@@ -224,11 +245,11 @@ export const categorias = [
           en: "Three vegetarian tacos with beans, cheese, pico de gallo and avocado slices.",
         },
         precio: 120,
-        foto: tacosVegetarianos,
+        foto: veggie,
       },
       {
         id: 16,
-        nombre: Burritos,
+        nombre: { es: "Burritos", en: "Burritos" },
         descripcion: {
           es: "Burrito de tu elección de carne, con frijoles, queso y pico de gallo.",
           en: "Burrito with your choice of meat, beans, cheese and pico de gallo.",
@@ -248,23 +269,215 @@ export const categorias = [
           es: "Fritos o revueltos, con un ingrediente a su elección: jamón, chorizo, tocino o a la mexicana  Acompañados de frijoles refritos y un topping de chilaquiles.",
           en: "Fried or scrambled eggs. With an ingredient of your choice: ham, bacon, chorizo or mexican style. Served with beans and a chilaquiles topping.",
         },
-        precio: 120,
+        precio: 140,
         opciones: [huevos(0)],
         ingredientes: [],
+      },
+      {
+        id: 18,
+        nombre: { es: "Huevos Rancheros", en: "Rancheros Eggs" },
+        descripcion: {
+          es: "Huevos rancheros Sobre una cama de tortillas bañados en salsa. Acompañados de frijoles refritos y un topping de chilaquiles.",
+          en: "Rancheros eggs On a bed of tortillas and bathed in sauce. Served with beans and chilaquiles topping.",
+        },
+        precio: 140,
+        opciones: [huevos(0)],
+      },
+      {
+        id: 19,
+        nombre: { es: "Chilaquiles", en: "Chilaquiles" },
+        descripcion: {
+          es: "Chilaquiles con salsa verde, o roja, crema y queso.",
+          en: "Chilaquiles with green or red sauce, cream and cheese.",
+        },
+        precio: 140,
+        opciones: [huevos(0)],
+        foto: chilaquiles,
+      },
+      {
+        id: 20,
+        nombre: { es: "Chilaquiles con carne", en: "Chilaquiles with meat" },
+        descripcion: {
+          es: "Chilaquiles con salsa verde, o roja, crema y queso.",
+          en: "Chilaquiles with green or red sauce, cream and cheese.",
+        },
+        precio: 180,
+        extra: [carne(0)],
+      },
+      {
+        id: 21,
+        nombre: { es: "Molletes", en: "Molletes" },
+        descripcion: {
+          es: "",
+          en: "2 slices of cheesy bread, beans and pico de gallo.",
+        },
+        precio: 120,
+        ingredientes: [],
+      },
+      {
+        id: 22,
+        nombre: { es: "Omelette", en: "Omelette" },
+        descripcion: {
+          es: "Acompañado de frijoles refritos y un topping de chilaquiles.",
+          en: "Served with beans and a chilaquiles topping.",
+        },
+        precio: 140,
+        ingredientes: [],
+      },
+      {
+        id: 23,
+        nombre: { es: "Pancakes 3 Piezas", en: "Pancakes 3 Pieces" },
+        descripcion: {
+          es: "",
+          en: "",
+        },
+        precio: 120,
+      },
+      {
+        id: 24,
+        nombre: {
+          es: "Pancakes con huevo y tocino",
+          en: "Pancakes with egg and bacon",
+        },
+        descripcion: {
+          es: "",
+          en: "",
+        },
+        opciones: [huevos(0)],
+        precio: 180,
+      },
+      {
+        id: 25,
+        nombre: { es: "Burrito de huevo", en: "Egg Burrito" },
+        descripcion: {
+          es: "Burrito de huevo revuelto con frijoles, queso, pico de gallo y un ingrediente a elegir: jamón, tocino o a la mexicana..",
+          en: "Egg burrito with beans, cheese, pico de gallo and one ingredient of your choice: ham, bacon or Mexican style.",
+        },
+        ingredientes: [],
+        precio: 90,
+      },
+      {
+        id: 26,
+        nombre: { es: "Plato de fruta", en: "Fruit Plate" },
+        descripcion: {
+          es: "Una selección de frutas frescas de temporada.",
+          en: "A selection of fresh seasonal fruits.",
+        },
+        precio: 85,
+      },
+    ],
+  },
+  {
+    id: "bebidas",
+    nombre: { es: "Bebidas", en: "Drinks" },
+    articulos: [
+      {
+        id: 27,
+        nombre: { es: "Agua de frutas", en: "Flavored fruit Water" },
+        descripcion: { es: "1L", en: "1L" },
+        precio: 75,
+      },
+      {
+        id: 28,
+        nombre: { es: "Licuado de frutas", en: "Fruit Milkshake" },
+        descripcion: { es: "1L", en: "1L" },
+        precio: 100,
+      },
+    ],
+  },
+  {
+    id: "extras",
+    nombre: { es: "Extras", en: "Extras" },
+    articulos: [
+      {
+        id: 29,
+        nombre: { es: "Frijoles Refritos", en: "Refried Beans" },
+        descripcion: {
+          es: "Orden con totopos",
+          en: "Order with crusty tortillas",
+        },
+        precio: 40,
+      },
+      {
+        id: 30,
+        nombre: { es: "Chicharron", en: "Chicharron" },
+        descripcion: { es: "Orden", en: "Order" },
+        precio: 50,
+      },
+      {
+        id: 31,
+        nombre: { es: "Pico de Gallo", en: "Pico de Gallo" },
+        descripcion: {
+          es: "Orden con totopos",
+          en: "Order with crusty tortillas",
+        },
+        precio: 40,
       },
     ],
   },
   {
     id: "por-kilo",
-    nombre: { es: "Por kilo", en: "By kilo" },
+    nombre: { es: "Por kilo", en: "2.2 pounds/1 kg" },
     articulos: [
       {
         id: 20,
-        nombre: "Birria",
-        descripcion: { es: "...", en: "..." },
-        precio: 350,
-        unidad: { es: "kg", en: "kg" }, // 👈 solo donde aplique
-        imagen: birriaKilo,
+        nombre: { es: "1 kg Birria", en: "Birria" },
+        descripcion: {
+          es: "Incluyen tortillas, cilantro, cebolla y salsas.",
+          en: "All the orders included tortillas, onion with cilantro and spicy souce.",
+        },
+        precio: 620,
+        unidad: { es: "kg", en: "kg" },
+      },
+      {
+        id: 21,
+        nombre: { es: "1/2 kg Birria", en: "1/2 kg Birria" },
+        descripcion: {
+          es: "Incluyen tortillas, cilantro, cebolla y salsas.",
+          en: "All the orders included tortillas, onion with cilantro and spicy souce.",
+        },
+        precio: 340,
+        unidad: { es: "kg", en: "kg" },
+      },
+      {
+        id: 22,
+        nombre: { es: "1 kg Barbacoa de res", en: "Barbacoa(beef)" },
+        descripcion: {
+          es: "Incluyen tortillas, cilantro, cebolla y salsas.",
+          en: "All the orders included tortillas, onion with cilantro and spicy souce.",
+        },
+        precio: 620,
+        unidad: { es: "kg", en: "kg" },
+      },
+      {
+        id: 23,
+        nombre: { es: "1/2 kg Barbacoa de res", en: "1/2 kg Barbacoa(beef)" },
+        descripcion: {
+          es: "Incluyen tortillas, cilantro, cebolla y salsas.",
+          en: "All the orders included tortillas, onion with cilantro and spicy souce.",
+        },
+        precio: 340,
+        unidad: { es: "kg", en: "kg" },
+      },
+      {
+        id: 24,
+        nombre: { es: "1 kg Carnitas", en: "Carnitas(Pork)" },
+        descripcion: {
+          es: "Incluyen tortillas, cilantro, cebolla y salsas.",
+          en: "All the orders included tortillas, onion with cilantro and spicy souce.",
+        },
+        precio: 460,
+        unidad: { es: "kg", en: "kg" },
+      },
+      {
+        id: 25,
+        nombre: { es: "1/2 kg Carnitas", en: "1/2 kg Carnitas(Pork)" },
+        descripcion: {
+          es: "Incluyen tortillas, cilantro, cebolla, salsas y chicharron.",
+          en: "All the orders included tortillas, onion with cilantro, spicy souce and chicharron.",
+        },
+        precio: 250,
+        unidad: { es: "kg", en: "kg" },
       },
     ],
   },

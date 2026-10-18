@@ -1,7 +1,6 @@
 import { useState } from "react";
 
 function ArticuloMenu({ articulo, lang, textoAgregar, onAgregar }) {
-  // ejemplo: { queso: true, carne: "pollo" }
   const [elegidos, setElegidos] = useState({});
   const extras = articulo.extras || [];
 
@@ -10,22 +9,22 @@ function ArticuloMenu({ articulo, lang, textoAgregar, onAgregar }) {
   }
 
   const totalExtras = extras
-    .filter((e) => elegidos[e.id]) // true o una opción elegida; "" y false no cuentan
+    .filter((e) => elegidos[e.id])
     .reduce((suma, e) => suma + e.precio, 0);
 
   const precioFinal = articulo.precio + totalExtras;
 
   return (
     <article className="menu__article">
-      {articulo.imagen && (
+      {articulo.foto && (
         <img
           className="menu__image"
-          src={articulo.imagen}
-          alt={articulo.nombre}
+          src={articulo.foto}
+          alt={articulo.nombre[lang]}
         />
       )}
       <div className="menu__details">
-        <h3>{articulo.nombre}</h3>
+        <h3>{articulo.nombre[lang]}</h3>
         <p>{articulo.descripcion[lang]}</p>
 
         {extras.map((extra) =>
