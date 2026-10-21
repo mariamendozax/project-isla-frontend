@@ -47,23 +47,33 @@ const carne = (precio) => ({
   ],
 });
 
+const ingredientesComunes = (precio) => ({
+  id: "ingredientesComunes",
+  tipo: "opciones",
+  nombre: {
+    es: "Elige el ingrediente de tu elección",
+    en: "Choose the ingredient you want",
+  },
+  precio,
+  opciones: [
+    { id: "jamon", nombre: { es: "Jamón", en: "Ham" } },
+    { id: "chorizo", nombre: { es: "Chorizo", en: "Chorizo" } },
+    { id: "tocino", nombre: { es: "Tocino", en: "Bacon" } },
+    { id: "mexicana", nombre: { es: "Mexicana", en: "Mexican" } },
+  ],
+});
+
 const huevos = (precio) => ({
   id: "huevos",
   tipo: "opciones",
   nombre: {
-    es: "Agrega el ingrediente de tu elección",
-    en: "Add ingredient of your choice",
+    es: "Elige el tipo de huevo que deseas",
+    en: "Choose the type of egg you want",
   },
   precio,
   opciones: [
     { id: "fritos", nombre: { es: "Fritos", en: "Fried" } },
     { id: "revueltos", nombre: { es: "Revueltos", en: "Scrambled" } },
-  ],
-  ingredientes: [
-    { id: "jamon", nombre: { es: "Jamón", en: "Ham" } },
-    { id: "chorizo", nombre: { es: "Chorizo", en: "Chorizo" } },
-    { id: "tocino", nombre: { es: "Tocino", en: "Bacon" } },
-    { id: "mexicana", nombre: { es: "Mexicana", en: "Mexican" } },
   ],
 });
 
@@ -189,7 +199,7 @@ export const categorias = [
         id: 10,
         nombre: { es: "Consomé Litro", en: "Beef Soup" },
         descripcion: {
-          es: "...",
+          es: "",
           en: "Delicious beef and spiced soup with shredded beef. Great for hangover.",
         },
         precio: 180,
@@ -198,7 +208,7 @@ export const categorias = [
         id: 11,
         nombre: { es: "Birriamen", en: "Birriamen" },
         descripcion: {
-          es: "...",
+          es: "",
           en: "Japanese ramen fusion with Mexican birria, and cheese. Delicious!",
         },
         precio: 120,
@@ -255,6 +265,7 @@ export const categorias = [
           en: "Burrito with your choice of meat, beans, cheese and pico de gallo.",
         },
         precio: 120,
+        extras: [carne(0)],
       },
     ],
   },
@@ -270,8 +281,7 @@ export const categorias = [
           en: "Fried or scrambled eggs. With an ingredient of your choice: ham, bacon, chorizo or mexican style. Served with beans and a chilaquiles topping.",
         },
         precio: 140,
-        opciones: [huevos(0)],
-        ingredientes: [],
+        extras: [huevos(0), ingredientesComunes(0)],
       },
       {
         id: 18,
@@ -281,7 +291,7 @@ export const categorias = [
           en: "Rancheros eggs On a bed of tortillas and bathed in sauce. Served with beans and chilaquiles topping.",
         },
         precio: 140,
-        opciones: [huevos(0)],
+        extras: [huevos(0)],
       },
       {
         id: 19,
@@ -291,7 +301,7 @@ export const categorias = [
           en: "Chilaquiles with green or red sauce, cream and cheese.",
         },
         precio: 140,
-        opciones: [huevos(0)],
+        extras: [huevos(0)],
         foto: chilaquiles,
       },
       {
@@ -302,7 +312,7 @@ export const categorias = [
           en: "Chilaquiles with green or red sauce, cream and cheese.",
         },
         precio: 180,
-        extra: [carne(0)],
+        extras: [carne(0)],
       },
       {
         id: 21,
@@ -312,7 +322,7 @@ export const categorias = [
           en: "2 slices of cheesy bread, beans and pico de gallo.",
         },
         precio: 120,
-        ingredientes: [],
+        extras: [ingredientesComunes(40)],
       },
       {
         id: 22,
@@ -322,7 +332,7 @@ export const categorias = [
           en: "Served with beans and a chilaquiles topping.",
         },
         precio: 140,
-        ingredientes: [],
+        extras: [ingredientesComunes(20)],
       },
       {
         id: 23,
@@ -343,8 +353,9 @@ export const categorias = [
           es: "",
           en: "",
         },
-        opciones: [huevos(0)],
+        extras: [huevos(0)],
         precio: 180,
+        foto: desayuno,
       },
       {
         id: 25,
@@ -353,7 +364,7 @@ export const categorias = [
           es: "Burrito de huevo revuelto con frijoles, queso, pico de gallo y un ingrediente a elegir: jamón, tocino o a la mexicana..",
           en: "Egg burrito with beans, cheese, pico de gallo and one ingredient of your choice: ham, bacon or Mexican style.",
         },
-        ingredientes: [],
+        extras: [ingredientesComunes(0)],
         precio: 90,
       },
       {
