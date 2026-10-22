@@ -4,6 +4,7 @@ import { textos, categorias } from "../data/Menu";
 
 function Menu() {
   const [cantidadEnCarrito, setCantidadEnCarrito] = useState(0);
+  const [categoria, setCategoria] = useState("todas");
   const [lang, setLang] = useState("es");
   const t = textos[lang];
 
@@ -13,20 +14,31 @@ function Menu() {
 
   return (
     <main className="menu">
-      <button
-        className="hero__lang"
-        onClick={() => setLang(lang === "es" ? "en" : "es")}
-      >
-        {lang === "es" ? "EN" : "ES"}
-      </button>
-
       <header className="menu__header">
         <h1 className="menu__title">{t.titulo}</h1>
+        <button
+          className="hero__lang"
+          onClick={() => setLang(lang === "es" ? "en" : "es")}
+        >
+          {lang === "es" ? "EN" : "ES"}
+        </button>
       </header>
+
+      <nav className="menu__categorias" aria-label={t.categoriasLabel}>
+        {categorias.map((c) => (
+          <a className="menu__categoria-link" key={c.id} href={`#cat-${c.id}`}>
+            {c.nombre[lang]}
+          </a>
+        ))}
+      </nav>
 
       <section className="menu__articles" aria-label={t.articulosLabel}>
         {categorias.map((categoria) => (
-          <div key={categoria.id} className="menu__category">
+          <div
+            key={categoria.id}
+            id={`cat-${categoria.id}`}
+            className="menu__category"
+          >
             <h2 className="menu__category-title">{categoria.nombre[lang]}</h2>
             {categoria.articulos.map((articulo) => (
               <ArticuloMenu

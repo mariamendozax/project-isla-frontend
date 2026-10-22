@@ -10,7 +10,7 @@ import birriamen from "../../images/birriamen.png";
 
 export const textos = {
   es: {
-    titulo: "México Lindo y qué Rico",
+    titulo: "México Lindo Isla",
     articulosLabel: "Artículos del menú",
     agregar: "Añadir al carrito",
     carrito: "Carrito:",
@@ -18,7 +18,7 @@ export const textos = {
     articulos: "artículos",
   },
   en: {
-    titulo: "México Lindo y qué Rico",
+    titulo: "México Lindo Isla",
     articulosLabel: "Menu items",
     agregar: "Add to cart",
     carrito: "Cart:",
@@ -47,7 +47,7 @@ const carne = (precio) => ({
   ],
 });
 
-const ingredientesComunes = (precio) => ({
+const ingredientesComunes = (precio, excluir = []) => ({
   id: "ingredientesComunes",
   tipo: "opciones",
   nombre: {
@@ -60,7 +60,7 @@ const ingredientesComunes = (precio) => ({
     { id: "chorizo", nombre: { es: "Chorizo", en: "Chorizo" } },
     { id: "tocino", nombre: { es: "Tocino", en: "Bacon" } },
     { id: "mexicana", nombre: { es: "Mexicana", en: "Mexican" } },
-  ],
+  ].filter((op) => !excluir.includes(op.id)),
 });
 
 const huevos = (precio) => ({
@@ -322,11 +322,11 @@ export const categorias = [
           en: "2 slices of cheesy bread, beans and pico de gallo.",
         },
         precio: 120,
-        extras: [ingredientesComunes(40)],
+        extras: [ingredientesComunes(40, ["mexicana"])],
       },
       {
         id: 22,
-        nombre: { es: "Omelette", en: "Omelette" },
+        nombre: { es: "Omelette con queso", en: "Omelette with cheese" },
         descripcion: {
           es: "Acompañado de frijoles refritos y un topping de chilaquiles.",
           en: "Served with beans and a chilaquiles topping.",
