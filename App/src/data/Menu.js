@@ -7,6 +7,7 @@ import quesabirria from "../../images/quesabirria.png";
 import veggie from "../../images/veggie.png";
 import flautas from "../../images/flautas.png";
 import birriamen from "../../images/birriamen.png";
+import TacoBirria from "../../images/TacoBirria.png";
 
 export const textos = {
   es: {
@@ -34,9 +35,10 @@ const queso = (precio) => ({
   precio,
 });
 
-const carne = (precio) => ({
+const carne = (precio, obligatorio = false) => ({
   id: "carne",
   tipo: "opciones",
+  obligatorio,
   nombre: { es: "Agregar carne de tu elección", en: "Add meat of your choice" },
   precio,
   opciones: [
@@ -47,9 +49,10 @@ const carne = (precio) => ({
   ],
 });
 
-const ingredientesComunes = (precio, excluir = []) => ({
+const ingredientesComunes = (precio, excluir = [], obligatorio = false) => ({
   id: "ingredientesComunes",
   tipo: "opciones",
+  obligatorio,
   nombre: {
     es: "Elige el ingrediente de tu elección",
     en: "Choose the ingredient you want",
@@ -63,9 +66,10 @@ const ingredientesComunes = (precio, excluir = []) => ({
   ].filter((op) => !excluir.includes(op.id)),
 });
 
-const huevos = (precio) => ({
+const huevos = (precio, obligatorio = false) => ({
   id: "huevos",
   tipo: "opciones",
+  obligatorio,
   nombre: {
     es: "Elige el tipo de huevo que deseas",
     en: "Choose the type of egg you want",
@@ -75,6 +79,48 @@ const huevos = (precio) => ({
     { id: "fritos", nombre: { es: "Fritos", en: "Fried" } },
     { id: "revueltos", nombre: { es: "Revueltos", en: "Scrambled" } },
   ],
+});
+
+const sabores = (precio, obligatorio = false) => ({
+  id: "sabores",
+  tipo: "opciones",
+  obligatorio,
+  nombre: {
+    es: "Elige una opción",
+    en: "Choose an option",
+  },
+  precio,
+  opciones: [
+    { id: "Platano", nombre: { es: "Platano", en: "Banana" } },
+    { id: "Fresa", nombre: { es: "Fresa", en: "Strawberry" } },
+    { id: "Chocolate", nombre: { es: "Chocolate", en: "Chocolate" } },
+    {
+      id: "Chocobanana",
+      nombre: { es: "Chocobanana", en: "Chocolate with Banana" },
+    },
+  ],
+});
+
+const yogurt = (precio) => ({
+  id: "yogurt",
+  tipo: "opciones",
+  nombre: {
+    es: "Añade yogurt",
+    en: "Add yogurt",
+  },
+  precio,
+  opciones: [{ id: "yogurt", nombre: { es: "Yogurt", en: "Yogurt" } }],
+});
+
+const granola = (precio) => ({
+  id: "granola",
+  tipo: "opciones",
+  nombre: {
+    es: "Añade granola",
+    en: "Add granola",
+  },
+  precio,
+  opciones: [{ id: "granola", nombre: { es: "Granola", en: "Granola" } }],
 });
 
 export const categorias = [
@@ -91,6 +137,7 @@ export const categorias = [
         },
         precio: 40,
         extras: [queso(10)],
+        foto: TacoBirria,
       },
       {
         id: 2,
@@ -261,11 +308,11 @@ export const categorias = [
         id: 16,
         nombre: { es: "Burritos", en: "Burritos" },
         descripcion: {
-          es: "Burrito de tu elección de carne, con frijoles, queso y pico de gallo.",
+          es: "Burrito con elección de carne, con frijoles, queso y pico de gallo.",
           en: "Burrito with your choice of meat, beans, cheese and pico de gallo.",
         },
         precio: 120,
-        extras: [carne(0)],
+        extras: [carne(0, true)],
       },
     ],
   },
@@ -281,7 +328,10 @@ export const categorias = [
           en: "Fried or scrambled eggs. With an ingredient of your choice: ham, bacon, chorizo or mexican style. Served with beans and a chilaquiles topping.",
         },
         precio: 140,
-        extras: [huevos(0), ingredientesComunes(0)],
+        extras: [
+          huevos(0, true),
+          { ...ingredientesComunes(0), obligatorio: true },
+        ],
       },
       {
         id: 18,
@@ -291,7 +341,7 @@ export const categorias = [
           en: "Rancheros eggs On a bed of tortillas and bathed in sauce. Served with beans and chilaquiles topping.",
         },
         precio: 140,
-        extras: [huevos(0)],
+        extras: [huevos(0, true)],
       },
       {
         id: 19,
@@ -301,7 +351,7 @@ export const categorias = [
           en: "Chilaquiles with green or red sauce, cream and cheese.",
         },
         precio: 140,
-        extras: [huevos(0)],
+        extras: [huevos(0, true)],
         foto: chilaquiles,
       },
       {
@@ -312,7 +362,7 @@ export const categorias = [
           en: "Chilaquiles with green or red sauce, cream and cheese.",
         },
         precio: 180,
-        extras: [carne(0)],
+        extras: [carne(0, true)],
       },
       {
         id: 21,
@@ -353,7 +403,7 @@ export const categorias = [
           es: "",
           en: "",
         },
-        extras: [huevos(0)],
+        extras: [huevos(0, true)],
         precio: 180,
         foto: desayuno,
       },
@@ -364,7 +414,7 @@ export const categorias = [
           es: "Burrito de huevo revuelto con frijoles, queso, pico de gallo y un ingrediente a elegir: jamón, tocino o a la mexicana..",
           en: "Egg burrito with beans, cheese, pico de gallo and one ingredient of your choice: ham, bacon or Mexican style.",
         },
-        extras: [ingredientesComunes(0)],
+        extras: [ingredientesComunes(0, [], true)],
         precio: 90,
       },
       {
@@ -374,6 +424,7 @@ export const categorias = [
           es: "Una selección de frutas frescas de temporada.",
           en: "A selection of fresh seasonal fruits.",
         },
+        extras: [yogurt(15), granola(15)],
         precio: 85,
       },
     ],
@@ -384,7 +435,7 @@ export const categorias = [
     articulos: [
       {
         id: 27,
-        nombre: { es: "Agua de frutas", en: "Flavored fruit Water" },
+        nombre: { es: "Agua del día", en: "Flavored fruit Water" },
         descripcion: { es: "1L", en: "1L" },
         precio: 75,
       },
@@ -392,6 +443,7 @@ export const categorias = [
         id: 28,
         nombre: { es: "Licuado de frutas", en: "Fruit Milkshake" },
         descripcion: { es: "1L", en: "1L" },
+        extras: [sabores(0, true), yogurt(15), granola(15)],
         precio: 100,
       },
     ],

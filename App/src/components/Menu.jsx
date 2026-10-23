@@ -5,6 +5,7 @@ import { textos, categorias } from "../data/Menu";
 function Menu() {
   const [cantidadEnCarrito, setCantidadEnCarrito] = useState(0);
   const [categoria, setCategoria] = useState("todas");
+  const [aviso, setAviso] = useState("");
   const [lang, setLang] = useState("es");
   const t = textos[lang];
 
@@ -47,16 +48,38 @@ function Menu() {
                 lang={lang}
                 textoAgregar={t.agregar}
                 onAgregar={agregarAlCarrito}
+                onFaltan={setAviso}
               />
             ))}
           </div>
         ))}
       </section>
+      <footer className="menu__footer">
+        <p className="menu__cart" aria-live="polite">
+          {t.carrito} {cantidadEnCarrito}{" "}
+          {cantidadEnCarrito === 1 ? t.articulo : t.articulos}
+        </p>
+      </footer>
 
-      <p className="menu__cart" aria-live="polite">
-        {t.carrito} {cantidadEnCarrito}{" "}
-        {cantidadEnCarrito === 1 ? t.articulo : t.articulos}
-      </p>
+      {aviso && (
+        <div
+          className="modal"
+          role="alertdialog"
+          aria-modal="true"
+          onClick={() => setAviso("")}
+        >
+          <div className="modal__box" onClick={(e) => e.stopPropagation()}>
+            <p>{aviso}</p>
+            <button
+              className="menu__btn"
+              type="button"
+              onClick={() => setAviso("")}
+            >
+              OK
+            </button>
+          </div>
+        </div>
+      )}
     </main>
   );
 }

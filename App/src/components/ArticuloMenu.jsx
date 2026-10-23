@@ -1,11 +1,37 @@
 import { useState } from "react";
 
-function ArticuloMenu({ articulo, lang, textoAgregar, onAgregar }) {
+function ArticuloMenu({ articulo, lang, textoAgregar, onAgregar, onFaltan }) {
   const [elegidos, setElegidos] = useState({});
+  const [errores, setErrores] = useState({});
   const extras = articulo.extras || [];
+
+  function claveDe(extra) {
+    return extra.ingredientes ? `${extra.id}-ingrediente` : extra.id;
+  }
 
   function cambiarExtra(id, valor) {
     setElegidos((actuales) => ({ ...actuales, [id]: valor }));
+  }
+
+  function handleAgregar() {
+    const faltantes = extras.filter(
+      (extra) => extra.obligatorio && !elegidos[claveDe(extra)],
+    );
+
+    if (faltantes.length > 0) {
+      setErrores(
+        Object.fromEntries(faltantes.map((extra) => [claveDe(extra), true])),
+      );
+      onFaltan(
+        lang === "es"
+          ? "Elige una opción antes de añadir al carrito"
+          : "Please choose an option before adding to cart",
+      );
+      return;
+    }
+
+    setErrores({});
+    onAgregar({ articulo, extras: elegidos, precio: precioFinal });
   }
 
   const totalExtras = extras
@@ -33,10 +59,13 @@ function ArticuloMenu({ articulo, lang, textoAgregar, onAgregar }) {
           return (
             <div key={extra.id} className="menu__extra">
               {extra.tipo === "opciones" ? (
-                <label>
+                <label className="menu__extra-label">
                   {extra.nombre[lang]}
                   {etiquetaPrecio}
+                  {extra.obligatorio && <span aria-hidden="true"> *</span>}
                   <select
+                    className={`menu__extra-select
+                    ${errores[extra.id] ? "menu__extra-select--error" : ""}`}
                     value={elegidos[extra.id] || ""}
                     onChange={(e) => cambiarExtra(extra.id, e.target.value)}
                   >
@@ -57,7 +86,7 @@ function ArticuloMenu({ articulo, lang, textoAgregar, onAgregar }) {
                   </select>
                 </label>
               ) : (
-                <label>
+                <label className="menu__extra-checkbox">
                   <input
                     type="checkbox"
                     checked={!!elegidos[extra.id]}
@@ -72,6 +101,11 @@ function ArticuloMenu({ articulo, lang, textoAgregar, onAgregar }) {
                 <label>
                   {lang === "es" ? "Ingrediente" : "Ingredient"}
                   <select
+                    className={`menu__extra-select ${
+                      errores[`${extra.id}-ingrediente`]
+                        ? "menu__extra-select--error"
+                        : ""
+                    }`}
                     value={elegidos[`${extra.id}-ingrediente`] || ""}
                     onChange={(e) =>
                       cambiarExtra(`${extra.id}-ingrediente`, e.target.value)
@@ -86,19 +120,18 @@ function ArticuloMenu({ articulo, lang, textoAgregar, onAgregar }) {
                       </option>
                     ))}
                   </select>
+                  {errores[extra.id] && (
+                    <span className="menu__error">
+                      {lang === "es" ? "Elige una opción" : "Please choose one"}
+                    </span>
+                  )}
                 </label>
               )}
             </div>
           );
         })}
         <p className="menu__prices">${precioFinal} MXN</p>
-        <button
-          className="menu__btn"
-          type="button"
-          onClick={() =>
-            onAgregar({ articulo, extras: elegidos, precio: precioFinal })
-          }
-        >
+        <button className="menu__btn" type="button" onClick={handleAgregar}>
           {textoAgregar}
         </button>
       </div>
