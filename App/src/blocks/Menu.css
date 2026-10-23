@@ -54,7 +54,7 @@ html {
   gap: 8px;
   overflow-x: auto;
   padding: 8px 12px;
-  background: #fffaf2;
+  background: #f99b1c;
   z-index: 10;
   position: sticky;
   top: 0;
@@ -65,10 +65,11 @@ html {
   align-items: center;
   box-sizing: border-box;
   padding: 3px 10px;
-  border: 1px solid #a84419;
+  border: 1px solid #fffaf2;
   border-radius: 7px;
   background: transparent;
-  color: #a84419;
+  font-weight: 600;
+  color: #fffaf2;
   text-decoration: none;
   cursor: pointer;
 }
@@ -175,13 +176,21 @@ html {
 
 .menu__footer {
   position: sticky;
+  bottom: 0;
+  background: #f99b1c;
+  padding: 14px 24px;
+  z-index: 10;
+  box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.1); /* Sombra sutil hacia arriba */
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
 }
 
 .menu__cart {
-  margin: 28px auto 0;
+  margin: 0 auto;
   max-width: 900px;
   text-align: right;
   font-weight: 600;
+  color: #fffaf2;
 }
 
 @media (min-width: 768px) {

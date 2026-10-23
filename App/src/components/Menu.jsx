@@ -15,7 +15,7 @@ function Menu() {
 
   return (
     <main className="menu">
-      <header className="menu__header">
+      <header className="menu__header" id="menu__header">
         <h1 className="menu__title">{t.titulo}</h1>
         <button
           className="hero__lang"
