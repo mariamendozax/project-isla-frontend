@@ -31,7 +31,12 @@ function ArticuloMenu({ articulo, lang, textoAgregar, onAgregar, onFaltan }) {
     }
 
     setErrores({});
-    onAgregar({ articulo, extras: elegidos, precio: precioFinal });
+    onAgregar({
+      id: articulo.id,
+      nombre: articulo.nombre[lang],
+      extras: elegidos,
+      precio: precioFinal,
+    });
   }
 
   const totalExtras = extras

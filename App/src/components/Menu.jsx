@@ -1,17 +1,14 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import ArticuloMenu from "./ArticuloMenu";
 import { textos, categorias } from "../data/Menu";
 
-function Menu() {
-  const [cantidadEnCarrito, setCantidadEnCarrito] = useState(0);
+function Menu({ cantidadEnCarrito, onAgregar }) {
+  const navigate = useNavigate();
   const [categoria, setCategoria] = useState("todas");
   const [aviso, setAviso] = useState("");
   const [lang, setLang] = useState("es");
   const t = textos[lang];
-
-  function agregarAlCarrito() {
-    setCantidadEnCarrito((cantidad) => cantidad + 1);
-  }
 
   return (
     <main className="menu">
@@ -47,7 +44,7 @@ function Menu() {
                 articulo={articulo}
                 lang={lang}
                 textoAgregar={t.agregar}
-                onAgregar={agregarAlCarrito}
+                onAgregar={onAgregar}
                 onFaltan={setAviso}
               />
             ))}
@@ -59,6 +56,13 @@ function Menu() {
           {t.carrito} {cantidadEnCarrito}{" "}
           {cantidadEnCarrito === 1 ? t.articulo : t.articulos}
         </p>
+        <button
+          className="cart__menu-btn"
+          onClick={() => navigate("/cart")}
+          aria-label={t.verCarrito}
+        >
+          <span className="button-text">{t.siguiente}</span>🛒
+        </button>
       </footer>
 
       {aviso && (

@@ -17,6 +17,7 @@ export const textos = {
     carrito: "Carrito:",
     articulo: "artículo",
     articulos: "artículos",
+    siguiente: "Siguiente",
   },
   en: {
     titulo: "México Lindo Isla",
@@ -25,6 +26,7 @@ export const textos = {
     carrito: "Cart:",
     articulo: "item",
     articulos: "items",
+    siguiente: "Next",
   },
 };
 
@@ -237,7 +239,7 @@ export const categorias = [
         nombre: { es: "Quesabirria", en: "Quesabirria" },
         descripcion: {
           es: "",
-          en: "marinated beef with chili peppers in a cheesy flour tortilla, with a birria soup for dipping.",
+          en: "Marinated beef with chili peppers in a cheesy tortilla, with a birria soup for dipping.",
         },
         precio: 60,
         foto: quesabirria,
