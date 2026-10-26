@@ -3,11 +3,10 @@ import { useNavigate } from "react-router-dom";
 import ArticuloMenu from "./ArticuloMenu";
 import { textos, categorias } from "../data/Menu";
 
-function Menu({ cantidadEnCarrito, onAgregar }) {
+function Menu({ lang, setLang, cantidadEnCarrito, onAgregar }) {
   const navigate = useNavigate();
   const [categoria, setCategoria] = useState("todas");
   const [aviso, setAviso] = useState("");
-  const [lang, setLang] = useState("es");
   const t = textos[lang];
 
   return (

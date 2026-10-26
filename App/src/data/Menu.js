@@ -17,7 +17,12 @@ export const textos = {
     carrito: "Carrito:",
     articulo: "artículo",
     articulos: "artículos",
+    cart: "Tu carrito está vacío 🌮",
     siguiente: "Siguiente",
+    quitar: "Quitar",
+    total: "Total",
+    volver: "Menu",
+    pedir: "Pedir",
   },
   en: {
     titulo: "México Lindo Isla",
@@ -26,7 +31,12 @@ export const textos = {
     carrito: "Cart:",
     articulo: "item",
     articulos: "items",
+    cart: "Your cart is empty 🌮",
     siguiente: "Next",
+    quitar: "Remove",
+    total: "Total",
+    volver: "Menu",
+    pedir: "Checkout",
   },
 };
 
@@ -132,7 +142,7 @@ export const categorias = [
     articulos: [
       {
         id: 1,
-        nombre: { es: "Taco de birria", en: "Birria Taco(beef)" },
+        nombre: { es: "Taco de birria", en: "Birria Taco (beef)" },
         descripcion: {
           es: "",
           en: "Mexican dish: marinated beef with chili peppers in spiced broth.",
@@ -143,7 +153,7 @@ export const categorias = [
       },
       {
         id: 2,
-        nombre: { es: "Taco de barbacoa de res", en: "Barbacoa Taco(beef)" },
+        nombre: { es: "Taco de barbacoa de res", en: "Barbacoa Taco (beef)" },
         descripcion: {
           es: "",
           en: "Mexican dish: shredded meat in spiced broth.",
@@ -154,7 +164,7 @@ export const categorias = [
       },
       {
         id: 3,
-        nombre: { es: "Taco de carnitas", en: "Carnitas Taco(Pork)" },
+        nombre: { es: "Taco de carnitas", en: "Carnitas Taco (Pork)" },
         descripcion: {
           es: "",
           en: "Mexican dish: small, shredded pieces of crisp roast pork.",
@@ -193,7 +203,7 @@ export const categorias = [
         id: 6,
         nombre: {
           es: "Torta de barbacoa de res",
-          en: "Barbacoa Sandwich(beef)",
+          en: "Barbacoa Sandwich (beef)",
         },
         descripcion: {
           es: "",
@@ -206,7 +216,7 @@ export const categorias = [
         id: 7,
         nombre: {
           es: "Torta de carnitas",
-          en: "Carnitas Sandwich(Pork)",
+          en: "Carnitas Sandwich (Pork)",
         },
         descripcion: {
           es: "",

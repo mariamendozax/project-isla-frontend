@@ -7,13 +7,14 @@ import Cart from "./Cart.jsx";
 function App() {
   const [verMenu, setVerMenu] = useState(false);
   const [cartItems, setCartItems] = useState([]);
+  const [lang, setLang] = useState("es");
 
   const handleAddItem = (item) => {
     setCartItems((prev) => [...prev, { ...item, cartId: crypto.randomUUID() }]);
   };
 
-  const handleRemoveItem = (id) => {
-    setCartItems((prev) => prev.filter((item) => item.id !== id));
+  const handleRemoveItem = (cartId) => {
+    setCartItems((prev) => prev.filter((item) => item.cartId !== cartId));
   };
 
   const cantidadEnCarrito = cartItems.length;
@@ -21,12 +22,14 @@ function App() {
   return (
     <Routes>
       <Route
-        path="/"
+        path="/menu"
         element={
           !verMenu ? (
             <Hero onEnter={() => setVerMenu(true)} />
           ) : (
             <Menu
+              lang={lang}
+              setLang={setLang}
               cantidadEnCarrito={cantidadEnCarrito}
               onAgregar={handleAddItem}
             />
@@ -35,7 +38,13 @@ function App() {
       />
       <Route
         path="/cart"
-        element={<Cart cartItems={cartItems} onRemoveItem={handleRemoveItem} />}
+        element={
+          <Cart
+            lang={lang}
+            cartItems={cartItems}
+            onRemoveItem={handleRemoveItem}
+          />
+        }
       />
     </Routes>
   );

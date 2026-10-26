@@ -31,10 +31,39 @@ function ArticuloMenu({ articulo, lang, textoAgregar, onAgregar, onFaltan }) {
     }
 
     setErrores({});
+
+    const extrasDetalle = extras
+      .filter(
+        (extra) => elegidos[extra.id] || elegidos[`${extra.id}-ingrediente`],
+      )
+      .map((extra) => {
+        const partes = [extra.nombre[lang]];
+
+        if (extra.tipo === "opciones") {
+          const opcion = extra.opciones.find(
+            (op) => op.id === elegidos[extra.id],
+          );
+          if (opcion) partes.push(opcion.nombre[lang]);
+        }
+
+        if (extra.ingredientes) {
+          const ingrediente = extra.ingredientes.find(
+            (ing) => ing.id === elegidos[`${extra.id}-ingrediente`],
+          );
+          if (ingrediente) partes.push(ingrediente.nombre[lang]);
+        }
+
+        return {
+          nombre: partes.join(": "),
+          precio: elegidos[extra.id] ? extra.precio : 0,
+        };
+      });
+
     onAgregar({
       id: articulo.id,
       nombre: articulo.nombre[lang],
-      extras: elegidos,
+      extras: extrasDetalle,
+      precioBase: articulo.precio,
       precio: precioFinal,
     });
   }
@@ -125,7 +154,7 @@ function ArticuloMenu({ articulo, lang, textoAgregar, onAgregar, onFaltan }) {
                       </option>
                     ))}
                   </select>
-                  {errores[extra.id] && (
+                  {errores[claveDe(extra)] && (
                     <span className="menu__error">
                       {lang === "es" ? "Elige una opción" : "Please choose one"}
                     </span>
