@@ -1,0 +1,143 @@
+.checkout {
+  box-sizing: border-box;
+  display: grid;
+  min-height: 100vh;
+  place-items: center;
+  padding: clamp(24px, 6vw, 64px) 16px;
+  background: #fffaf2;
+  color: #3b2418;
+  font-family: "Outfit", sans-serif;
+}
+
+.checkout__div {
+  box-sizing: border-box;
+  display: grid;
+  gap: 14px;
+  width: min(100%, 560px);
+  padding: clamp(20px, 5vw, 36px);
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 8px 28px rgb(59 36 24 / 12%);
+}
+
+.checkout__div > label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 54px;
+  padding: 0 16px;
+  border: 1px solid rgb(252 176 69 / 45%);
+  border-radius: 10px;
+  background: #fffaf2;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    border-color 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.checkout__div > label:has(input:checked) {
+  border-color: #f99b1c;
+  background: rgb(252 176 69 / 14%);
+}
+
+.checkout__div input[type="radio"] {
+  width: 18px;
+  height: 18px;
+  margin: 0;
+  accent-color: #f99b1c;
+  cursor: pointer;
+}
+
+.checkout__div > input:not([type="radio"]) {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 46px;
+  padding: 0 14px;
+  border: 1px solid rgb(168 68 25 / 28%);
+  border-radius: 7px;
+  background: #fff;
+  color: #3b2418;
+  font: inherit;
+}
+
+.checkout__div > input:not([type="radio"])::placeholder {
+  color: #8c7668;
+}
+
+.checkout__div > input:not([type="radio"]):focus-visible {
+  border-color: #f99b1c;
+  outline: 3px solid rgb(252 176 69 / 35%);
+  outline-offset: 2px;
+}
+
+.checkout__div > button {
+  min-height: 44px;
+  padding: 0 16px;
+  border: 0;
+  border-radius: 7px;
+  background: #fcb045;
+  color: #fffaf2;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 600;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.checkout__div > button:hover {
+  transform: translateY(-1px);
+  background: #f99b1c;
+  box-shadow: 0 6px 18px rgb(252 176 69 / 35%);
+}
+
+.checkout__div > button:focus-visible {
+  outline: 3px solid #a84419;
+  outline-offset: 3px;
+}
+
+.checkout__div > p {
+  margin: 0;
+  padding: 12px 14px;
+  border-radius: 7px;
+  background: #fffaf2;
+  color: #765644;
+  line-height: 1.5;
+}
+
+.pickup-map {
+  margin: 24px 0;
+  border: 1px solid #fde3c0; /* ajusta al color de tus tarjetas */
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.pickup-map__frame {
+  display: block;
+  width: 100%;
+  height: 300px;
+  border: 0;
+}
+
+.pickup-map__link {
+  display: block;
+  padding: 12px 16px;
+  text-align: center;
+  font-weight: 600;
+  color: #b34100;
+  text-decoration: none;
+}
+
+@media (min-width: 520px) {
+  .checkout__div {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .checkout__div > button,
+  .checkout__div > input:not([type="radio"]),
+  .checkout__div > p {
+    grid-column: 1 / -1;
+  }
+}

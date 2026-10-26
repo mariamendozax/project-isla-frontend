@@ -23,6 +23,13 @@ export const textos = {
     total: "Total",
     volver: "Menu",
     pedir: "Pedir",
+    pickup: "Recoger",
+    delivery: "Entrega",
+    goTo: "Ir al carrito",
+    useUbi: "Usar mi ubicación",
+    saveUbi: "Ubicación guardada",
+    errorUbi: "No podemos entregar en esa ubicación",
+    ubi: "Cómo llegar",
   },
   en: {
     titulo: "México Lindo Isla",
@@ -37,6 +44,13 @@ export const textos = {
     total: "Total",
     volver: "Menu",
     pedir: "Checkout",
+    pickup: "Pickup",
+    delivery: "Delivery",
+    goTo: "Go to cart",
+    useUbi: "Use my location",
+    saveUbi: "Location saved",
+    errorUbi: "We cannot deliver to that location",
+    ubi: "How do I get there",
   },
 };
 

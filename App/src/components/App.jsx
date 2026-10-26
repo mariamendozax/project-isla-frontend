@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import Hero from "./Hero.jsx";
 import Menu from "./Menu.jsx";
 import Cart from "./Cart.jsx";
+import Checkout from "./Checkout.jsx";
 
 function App() {
   const [verMenu, setVerMenu] = useState(false);
@@ -21,19 +22,16 @@ function App() {
 
   return (
     <Routes>
+      <Route path="/" element={<Hero onEnter={() => navigate("/menu")} />} />
       <Route
         path="/menu"
         element={
-          !verMenu ? (
-            <Hero onEnter={() => setVerMenu(true)} />
-          ) : (
-            <Menu
-              lang={lang}
-              setLang={setLang}
-              cantidadEnCarrito={cantidadEnCarrito}
-              onAgregar={handleAddItem}
-            />
-          )
+          <Menu
+            lang={lang}
+            setLang={setLang}
+            cantidadEnCarrito={cantidadEnCarrito}
+            onAgregar={handleAddItem}
+          />
         }
       />
       <Route
@@ -45,6 +43,10 @@ function App() {
             onRemoveItem={handleRemoveItem}
           />
         }
+      />
+      <Route
+        path="/checkout"
+        element={<Checkout lang={lang} cartItems={cartItems} />}
       />
     </Routes>
   );

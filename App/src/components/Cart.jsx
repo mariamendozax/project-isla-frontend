@@ -24,36 +24,67 @@ function Cart({ lang, cartItems, onRemoveItem }) {
     );
   }
 
+  const groupedItems = Object.values(
+    cartItems.reduce((acc, item) => {
+      const extras = item.extras ?? [];
+      const key = `${item.nombre}-${extras
+        .map((e) => e.nombre)
+        .sort()
+        .join(",")}`;
+
+      if (!acc[key]) {
+        acc[key] = {
+          ...item,
+          key,
+          cartIds: [],
+          unitPrice:
+            item.precioBase + extras.reduce((sum, e) => sum + e.precio, 0),
+        };
+      }
+      acc[key].cartIds.push(item.cartId);
+      return acc;
+    }, {}),
+  );
+
   return (
     <section className="cart">
       <div className="cart__container">
         <h1 className="cart__title">{t.carrito}</h1>
         <ul className="cart__list">
-          {cartItems.map((item) => (
-            <li className="cart__item" key={item.cartId}>
-              <div className="cart__item-main">
-                <span className="cart__item-name">{item.nombre}</span>
-                <span className="cart__item-price">${item.precioBase}</span>
-                <button
-                  className="cart__remove-btn"
-                  type="button"
-                  onClick={() => onRemoveItem(item.cartId)}
-                >
-                  {t.quitar}
-                </button>
-              </div>
+          {groupedItems.map((item) => {
+            const quantity = item.cartIds.length;
 
-              {item.extras?.length > 0 && (
-                <ul className="cart__extras">
-                  {item.extras.map((extra, index) => (
-                    <li key={index}>
-                      + {extra.nombre} ${extra.precio}
-                    </li>
-                  ))}
-                </ul>
-              )}
-            </li>
-          ))}
+            return (
+              <li className="cart__item" key={item.key}>
+                <div className="cart__item-main">
+                  <span className="cart__item-name">
+                    {quantity > 1 && `${quantity}x `}
+                    {item.nombre}
+                  </span>
+                  <span className="cart__item-price">
+                    ${item.unitPrice * quantity}
+                  </span>
+                  <button
+                    className="cart__remove-btn"
+                    type="button"
+                    onClick={() => onRemoveItem(item.cartIds[quantity - 1])}
+                  >
+                    {t.quitar}
+                  </button>
+                </div>
+
+                {item.extras?.length > 0 && (
+                  <ul className="cart__extras">
+                    {item.extras.map((extra, index) => (
+                      <li key={index}>
+                        + {extra.nombre} ${extra.precio}
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </li>
+            );
+          })}
         </ul>
         <p className="cart__total">
           {t.total} <span>${total}</span>
