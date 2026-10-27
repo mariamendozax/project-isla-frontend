@@ -2,11 +2,13 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ArticuloMenu from "./ArticuloMenu";
 import { textos, categorias } from "../data/Menu";
+import Modal from "./Modal";
 
 function Menu({ lang, setLang, cantidadEnCarrito, onAgregar }) {
   const navigate = useNavigate();
   const [categoria, setCategoria] = useState("todas");
   const [aviso, setAviso] = useState("");
+  const [isModalOpen, setIsModalOpen] = useState(true);
   const t = textos[lang];
 
   return (
@@ -49,6 +51,11 @@ function Menu({ lang, setLang, cantidadEnCarrito, onAgregar }) {
             ))}
           </div>
         ))}
+        <Modal
+          isOpen={isModalOpen}
+          onClose={() => setIsModalOpen(false)}
+          title="Envíos a domicilio solo zona centro"
+        />
       </section>
       <footer className="menu__footer">
         <p className="menu__cart" aria-live="polite">

@@ -8,6 +8,7 @@ import veggie from "../../images/veggie.png";
 import flautas from "../../images/flautas.png";
 import birriamen from "../../images/birriamen.png";
 import TacoBirria from "../../images/TacoBirria.png";
+import pancakes from "../../images/pancakes.png";
 
 export const textos = {
   es: {
@@ -418,6 +419,7 @@ export const categorias = [
           en: "",
         },
         precio: 120,
+        foto: pancakes,
       },
       {
         id: 24,
