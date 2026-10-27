@@ -109,7 +109,7 @@
 
 .pickup-map {
   margin: 24px 0;
-  border: 1px solid #fde3c0; /* ajusta al color de tus tarjetas */
+  border: 1px solid #fde3c0;
   border-radius: 16px;
   overflow: hidden;
 }
@@ -137,7 +137,14 @@
 
   .checkout__div > button,
   .checkout__div > input:not([type="radio"]),
-  .checkout__div > p {
+  .checkout__div > p,
+  .pickup-map {
     grid-column: 1 / -1;
+  }
+
+  .pickup-map {
+    max-width: 100%;
+    height: auto;
+    border: 1px solid #fde3c0;
   }
 }

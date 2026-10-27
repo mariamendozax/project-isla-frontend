@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import barbacoa from "../../images/barbacoa.png";
 import carnitas from "../../images/carnitas.png";
 import chilaquiles from "../../images/chilaquiles.png";
@@ -21,7 +22,9 @@ const fotos = [
   { src: mix, alt: "Desayuno, y tacos" },
 ];
 
-export default function Hero({ onEnter }) {
+export default function Hero() {
+  const navigate = useNavigate();
+
   return (
     <section className="hero">
       <div className="hero__grid">
@@ -42,7 +45,7 @@ export default function Hero({ onEnter }) {
           className="hero__logo"
         />
 
-        <button className="hero__btn" onClick={onEnter}>
+        <button className="hero__btn" onClick={() => navigate("/menu")}>
           MENU
         </button>
       </div>
