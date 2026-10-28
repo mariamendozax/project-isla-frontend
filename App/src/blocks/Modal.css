@@ -12,20 +12,36 @@
 .modal__content-div {
   position: relative;
   background-image: url(../../images/ModalMenu.png);
-  background-size: contain;
-  background-position: center;
-  background-repeat: no-repeat;
-  border-radius: 12px;
-  width: 90%;
-  max-width: 650px;
-  min-height: 400px;
-  padding: 40px;
+  background-size: 100% 100%;
+  border-radius: 14px;
+  height: 55vh;
+  aspect-ratio: 1536 / 1847;
+  max-width: 320px;
+  width: min(90vw, calc(80vh * 1536 / 1847));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero__lang-modal {
+  min-height: 40px;
+  min-width: 40px;
+  font-family: "Outfit", sans-serif;
+  font-size: 18px;
   text-align: center;
+  background-color: #fffaf2;
+  color: #f99b1c;
+  border: none;
+  border-radius: 1px;
+  position: absolute;
+  top: 10px;
+  left: 14px;
 }
 
 .modal__content {
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 
 .modal__close {
@@ -33,16 +49,26 @@
   align-items: flex-end;
   top: 10px;
   right: 14px;
-  background: none;
-  background-color: #fff;
+  background-color: #fffaf2;
+  border-radius: 3px;
   border: none;
   font-size: 24px;
   cursor: pointer;
 }
 
 .modal__title {
-  font-size: 60px;
-  margin: 16px 0 0;
+  font-size: clamp(28px, 8vw, 50px);
+  margin: 0;
+  width: 70%;
+  background-color: #fffaf2;
   font-family: "Oswald", sans-serif;
-  color: #fd221e;
+  color: #f99b1c;
+  border-radius: 6px;
+  padding: 8px;
+}
+
+@media (min-width: 768px) {
+  .modal__content-div {
+    max-width: 480px;
+  }
 }

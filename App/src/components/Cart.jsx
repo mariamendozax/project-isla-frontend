@@ -1,10 +1,28 @@
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { isOpen } from "../utils/Schedule";
 import { textos } from "../data/Menu";
 
 function Cart({ lang, cartItems, onRemoveItem }) {
   const total = cartItems.reduce((sum, item) => sum + item.precio, 0);
   const navigate = useNavigate();
   const t = textos[lang];
+  const [open, setOpen] = useState(isOpen());
+  const [showClosedModal, setShowClosedModal] = useState(false);
+
+  useEffect(() => {
+    const id = setInterval(() => setOpen(isOpen()), 60000);
+    return () => clearInterval(id);
+  }, []);
+
+  function handleNext() {
+    if (!isOpen()) {
+      setShowClosedModal(true);
+      setOpen(false);
+      return;
+    }
+    navigate("/checkout");
+  }
 
   if (cartItems.length === 0) {
     return (
@@ -97,9 +115,28 @@ function Cart({ lang, cartItems, onRemoveItem }) {
           >
             {t.volver}
           </button>
+          {showClosedModal && (
+            <div className="modal" onClick={() => setShowClosedModal(false)}>
+              <div
+                className="modal__box"
+                role="dialog"
+                aria-modal="true"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <p>{t.closedMsg}</p>
+                <button
+                  className="menu__btn"
+                  onClick={() => setShowClosedModal(false)}
+                >
+                  OK
+                </button>
+              </div>
+            </div>
+          )}
           <button
-            className="cart__checkout"
-            onClick={() => navigate("/checkout")}
+            className={`cart__checkout ${!open ? "cart__checkout--closed" : ""}`}
+            onClick={handleNext}
+            aria-disabled={!open}
           >
             {t.pedir}
           </button>

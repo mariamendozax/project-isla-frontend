@@ -31,6 +31,9 @@ export const textos = {
     saveUbi: "Ubicación guardada",
     errorUbi: "No podemos entregar en esa ubicación",
     ubi: "Cómo llegar",
+    modalMsg: "Envíos a domicilio solo zona centro",
+    closedMsg:
+      "Por ahora estamos cerrados. Horario: martes a domingo, 9:00 a 17:00.",
   },
   en: {
     titulo: "México Lindo Isla",
@@ -52,6 +55,9 @@ export const textos = {
     saveUbi: "Location saved",
     errorUbi: "We cannot deliver to that location",
     ubi: "How do I get there",
+    modalMsg: "Delivery available only in the centro area",
+    closedMsg:
+      "We're currently closed. Hours: Tuesday to Sunday, 9:00 AM to 5:00 PM.",
   },
 };
 

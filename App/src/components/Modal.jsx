@@ -1,6 +1,8 @@
 import { useEffect } from "react";
+import { textos, categorias } from "../data/Menu";
 
-function Modal({ isOpen, onClose, title }) {
+function Modal({ lang, setLang, isOpen, onClose, title }) {
+  const t = textos[lang];
   useEffect(() => {
     if (!isOpen) return;
     const handleEsc = (e) => e.key === "Escape" && onClose();
@@ -15,6 +17,12 @@ function Modal({ isOpen, onClose, title }) {
       <div className="modal__content-div" onClick={(e) => e.stopPropagation()}>
         <div className="modal__content">
           <button
+            className="hero__lang-modal"
+            onClick={() => setLang(lang === "es" ? "en" : "es")}
+          >
+            {lang === "es" ? "EN" : "ES"}
+          </button>
+          <button
             className="modal__close"
             onClick={onClose}
             aria-label="Cerrar"
@@ -22,7 +30,7 @@ function Modal({ isOpen, onClose, title }) {
             ✕
           </button>
 
-          {title && <h2 className="modal__title">{title}</h2>}
+          <h2 className="modal__title">{t.modalMsg}</h2>
         </div>
       </div>
     </div>

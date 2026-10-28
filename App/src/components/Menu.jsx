@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import ArticuloMenu from "./ArticuloMenu";
 import { textos, categorias } from "../data/Menu";
@@ -54,7 +54,8 @@ function Menu({ lang, setLang, cantidadEnCarrito, onAgregar }) {
         <Modal
           isOpen={isModalOpen}
           onClose={() => setIsModalOpen(false)}
-          title="Envíos a domicilio solo zona centro"
+          lang={lang}
+          setLang={setLang}
         />
       </section>
       <footer className="menu__footer">
