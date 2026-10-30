@@ -1,14 +1,9 @@
-const BASE_URL = `https://api.telegram.org/bot${import.meta.env.VITE_TELEGRAM_TOKEN}`;
-const CHAT_ID = import.meta.env.VITE_TELEGRAM_CHAT_ID;
+const BASE_URL = "https://api.open-meteo.com/v1/forecast";
 
-function checkResponse(res) {
-  return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
-}
+export function getForecast(lat, lon) {
+  const url = `${BASE_URL}?latitude=${lat}&longitude=${lon}&daily=weathercode,temperature_2m_max,temperature_2m_min,precipitation_probability_max&timezone=America/Cancun`;
 
-export function sendOrder(text) {
-  return fetch(`${BASE_URL}/sendMessage`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ chat_id: CHAT_ID, text }),
-  }).then(checkResponse);
+  return fetch(url).then((res) => {
+    return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
+  });
 }

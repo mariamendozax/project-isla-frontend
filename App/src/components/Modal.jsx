@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { textos, categorias } from "../data/Menu";
+import { textos, categorias } from "../data/data";
 
 function Modal({ lang, setLang, isOpen, onClose, title }) {
   const t = textos[lang];

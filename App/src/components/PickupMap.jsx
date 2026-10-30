@@ -1,4 +1,4 @@
-import { textos } from "../data/Menu";
+import { textos } from "../data/data";
 
 function PickupMap({ lang }) {
   const address =

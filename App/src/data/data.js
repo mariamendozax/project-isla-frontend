@@ -34,6 +34,11 @@ export const textos = {
     modalMsg: "Envíos a domicilio solo zona centro",
     closedMsg:
       "Por ahora estamos cerrados. Horario: martes a domingo, 9:00 a 17:00.",
+    name: "Nombre",
+    sendWa: "Enviar orden",
+    nameError: "Ingresa un nombre con al menos 3 letras",
+    addressError: "Dirección inválida",
+    outOfZone: "Fuera del área de rango",
   },
   en: {
     titulo: "México Lindo Isla",
@@ -58,6 +63,11 @@ export const textos = {
     modalMsg: "Delivery available only in the centro area",
     closedMsg:
       "We're currently closed. Hours: Tuesday to Sunday, 9:00 AM to 5:00 PM.",
+    name: "Name",
+    sendWa: "Send order",
+    nameError: "Enter a name with at least 3 letters",
+    addressError: "Invalid address",
+    outOfZone: "Out of range",
   },
 };
 

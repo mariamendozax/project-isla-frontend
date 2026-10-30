@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { isOpen } from "../utils/Schedule";
-import { textos } from "../data/Menu";
+import { textos } from "../data/data";
 
 function Cart({ lang, cartItems, onRemoveItem }) {
   const total = cartItems.reduce((sum, item) => sum + item.precio, 0);

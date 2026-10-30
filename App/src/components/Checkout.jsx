@@ -1,54 +1,100 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { textos } from "../data/Menu";
+import { textos } from "../data/data";
 import PickupMap from "./PickupMap";
+
+const WHATSAPP_NUMBER = "52XXXXXXXXXX";
 
 function Checkout({ lang, cartItems }) {
   const [modo, setModo] = useState("recoger");
+  const [nombre, setNombre] = useState("");
   const [direccion, setDireccion] = useState("");
   const [coords, setCoords] = useState(null);
   const [errorUbicacion, setErrorUbicacion] = useState("");
   const navigate = useNavigate();
-  const [isConfirmOpen, setIsConfirmOpen] = useState(false);
-  const [isSending, setIsSending] = useState(false);
-  const [isSent, setIsSent] = useState(false);
-  const [error, setError] = useState("");
+  const [aviso, setAviso] = useState("");
   const t = textos[lang];
 
-  function buildMessage() {
-    const lines = cart.map(
-      (item) =>
-        `• ${item.quantity}x ${item.name} - $${item.price * item.quantity}`,
+  const total = cartItems.reduce((sum, item) => sum + item.precio, 0);
+
+  const nombreValido = nombre.trim().length >= 3;
+  const faltanDatos =
+    !nombreValido || (modo === "entrega" && !direccion.trim() && !coords);
+
+  const ZONA_ENTREGA = {
+    latMax: 21.259818192336063, // norte
+    latMin: 21.253412270929463, // sur
+    lngMin: -86.75144213545913, // oeste
+    lngMax: -86.74435614788142, // este
+  };
+
+  function dentroDeZona({ lat, lng }) {
+    return (
+      lat <= ZONA_ENTREGA.latMax &&
+      lat >= ZONA_ENTREGA.latMin &&
+      lng >= ZONA_ENTREGA.lngMin &&
+      lng <= ZONA_ENTREGA.lngMax
     );
+  }
+
+  function buildMessage() {
+    const grupos = Object.values(
+      cartItems.reduce((acc, item) => {
+        const extras = item.extras.map((e) => e.nombre ?? e);
+        const key = `${item.nombre}|${[...extras].sort().join(",")}`;
+        if (!acc[key]) {
+          acc[key] = {
+            nombre: item.nombre,
+            extras,
+            precio: item.precio,
+            cantidad: 0,
+          };
+        }
+        acc[key].cantidad += 1;
+        return acc;
+      }, {}),
+    );
+
+    const lines = grupos.map((g) => {
+      const extras = g.extras.length ? `\n   ↳ ${g.extras.join(", ")}` : "";
+      return `• ${g.cantidad}x ${g.nombre} - $${g.precio * g.cantidad}${extras}`;
+    });
+
     return [
-      "🌮 NUEVO PEDIDO",
+      "🌮 *NUEVO PEDIDO*",
+      "",
       ...lines,
-      `Total: $${total} MXN`,
-      `Tipo: ${deliveryType === "delivery" ? "Entrega" : "Recoger"}`,
-      deliveryType === "delivery" ? `Dirección: ${address}` : "",
-      `Nombre: ${name}`,
-      `Tel: ${phone}`,
+      "",
+      `*Total: $${total} MXN*`,
+      `Tipo: ${modo === "entrega" ? "Entrega" : "Recoger"}`,
+      modo === "entrega" ? `Dirección: ${direccion}` : "",
+      modo === "entrega" && coords
+        ? `Ubicación: https://maps.google.com/?q=${coords.lat},${coords.lng}`
+        : "",
+      `Nombre: ${nombre.trim()}`,
       "Pago: efectivo",
     ]
-      .filter(Boolean)
+      .filter((line) => line !== "" || true)
       .join("\n");
   }
 
-  function handleConfirm() {
-    if (!isOpen()) {
-      setError(t.closedMsg);
+  function handleSendWhatsApp() {
+    if (!nombreValido) {
+      setAviso(t.nameError);
       return;
     }
-    setIsSending(true);
-    setError("");
-    sendOrder(buildMessage())
-      .then(() => {
-        setIsConfirmOpen(false);
-        setIsSent(true);
-        clearCart();
-      })
-      .catch(() => setError(t.orderError))
-      .finally(() => setIsSending(false));
+    if (modo === "entrega") {
+      if (!direccion.trim() && !coords) {
+        setAviso(t.addressError);
+        return;
+      }
+      if (coords && !dentroDeZona(coords)) {
+        setAviso(t.outOfZone);
+        return;
+      }
+    }
+    const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(buildMessage())}`;
+    window.open(url, "_blank", "noopener,noreferrer");
   }
 
   function usarUbicacion() {
@@ -63,6 +109,7 @@ function Checkout({ lang, cartItems }) {
         setErrorUbicacion("");
       },
       (err) => {
+        setCoords(null);
         setErrorUbicacion(
           err.code === err.PERMISSION_DENIED
             ? "No diste permiso. Puedes escribir tu dirección."
@@ -75,6 +122,16 @@ function Checkout({ lang, cartItems }) {
   return (
     <section className="checkout">
       <div className="checkout__div">
+        <input
+          value={nombre}
+          onChange={(e) => setNombre(e.target.value)}
+          placeholder={t.name}
+          minLength={3}
+          required
+        />
+        {nombre.length > 0 && !nombreValido && (
+          <p className="checkout__error">{t.nameError}</p>
+        )}
         <label>
           <input
             type="radio"
@@ -84,6 +141,7 @@ function Checkout({ lang, cartItems }) {
           {t.pickup}
         </label>
         {modo === "recoger" && <PickupMap lang={lang} />}
+
         <label>
           <input
             type="radio"
@@ -92,9 +150,6 @@ function Checkout({ lang, cartItems }) {
           />
           {t.delivery}
         </label>
-        <button className="cart__btn" onClick={() => navigate("/cart")}>
-          {t.goTo}
-        </button>
         {modo === "entrega" && (
           <>
             <input
@@ -102,14 +157,41 @@ function Checkout({ lang, cartItems }) {
               onChange={(e) => setDireccion(e.target.value)}
               placeholder="Calle, número, colonia"
             />
-            <button type="button" onClick={usarUbicacion}>
+            <button className="cart__btn" type="button" onClick={usarUbicacion}>
               📍 {t.useUbi}
             </button>
             {coords && <p>{t.saveUbi}✅</p>}
-            {errorUbicacion && <p>{t.errorUbi}</p>}
+            {errorUbicacion && <p>{errorUbicacion}</p>}
           </>
         )}
+
+        <button className="cart__btn-sent" onClick={handleSendWhatsApp}>
+          {t.sendWa}
+        </button>
+        <button className="cart__btn" onClick={() => navigate("/cart")}>
+          {t.goTo}
+        </button>
       </div>
+
+      {aviso && (
+        <div
+          className="modal"
+          role="alertdialog"
+          aria-modal="true"
+          onClick={() => setAviso("")}
+        >
+          <div className="modal__box" onClick={(e) => e.stopPropagation()}>
+            <p>{aviso}</p>
+            <button
+              className="menu__btn"
+              type="button"
+              onClick={() => setAviso("")}
+            >
+              OK
+            </button>
+          </div>
+        </div>
+      )}
     </section>
   );
 }

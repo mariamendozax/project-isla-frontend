@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import ArticuloMenu from "./ArticuloMenu";
-import { textos, categorias } from "../data/Menu";
+import { textos, categorias } from "../data/data";
 import Modal from "./Modal";
 
 function Menu({ lang, setLang, cantidadEnCarrito, onAgregar }) {
