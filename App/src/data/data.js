@@ -39,6 +39,9 @@ export const textos = {
     nameError: "Ingresa un nombre con al menos 3 letras",
     addressError: "Dirección inválida",
     outOfZone: "Fuera del área de rango",
+    card: "Tarjeta",
+    cash: "Efectivo",
+    cashOnly: "*Sólo efectivo",
   },
   en: {
     titulo: "México Lindo Isla",
@@ -68,6 +71,9 @@ export const textos = {
     nameError: "Enter a name with at least 3 letters",
     addressError: "Invalid address",
     outOfZone: "Out of range",
+    card: "Card",
+    cash: "Cash",
+    cashOnly: "*Cash only",
   },
 };
 

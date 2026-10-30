@@ -13,6 +13,7 @@ function Checkout({ lang, cartItems }) {
   const [errorUbicacion, setErrorUbicacion] = useState("");
   const navigate = useNavigate();
   const [aviso, setAviso] = useState("");
+  const [pago, setPago] = useState("efectivo");
   const t = textos[lang];
 
   const total = cartItems.reduce((sum, item) => sum + item.precio, 0);
@@ -20,6 +21,7 @@ function Checkout({ lang, cartItems }) {
   const nombreValido = nombre.trim().length >= 3;
   const faltanDatos =
     !nombreValido || (modo === "entrega" && !direccion.trim() && !coords);
+  const pagoFinal = modo === "entrega" ? "efectivo" : pago;
 
   const ZONA_ENTREGA = {
     latMax: 21.259818192336063, // norte
@@ -72,7 +74,7 @@ function Checkout({ lang, cartItems }) {
         ? `Ubicación: https://maps.google.com/?q=${coords.lat},${coords.lng}`
         : "",
       `Nombre: ${nombre.trim()}`,
-      "Pago: efectivo",
+      `Pago: ${pagoFinal === "tarjeta" ? "Tarjeta" : "Efectivo"}`,
     ]
       .filter((line) => line !== "" || true)
       .join("\n");
@@ -140,7 +142,27 @@ function Checkout({ lang, cartItems }) {
           />
           {t.pickup}
         </label>
-        {modo === "recoger" && <PickupMap lang={lang} />}
+        {modo === "recoger" && (
+          <>
+            <PickupMap lang={lang} />
+            <label>
+              <input
+                type="radio"
+                checked={pago === "efectivo"}
+                onChange={() => setPago("efectivo")}
+              />
+              {t.cash}
+            </label>
+            <label>
+              <input
+                type="radio"
+                checked={pago === "tarjeta"}
+                onChange={() => setPago("tarjeta")}
+              />
+              {t.card}
+            </label>
+          </>
+        )}
 
         <label>
           <input
@@ -152,6 +174,7 @@ function Checkout({ lang, cartItems }) {
         </label>
         {modo === "entrega" && (
           <>
+            <p>{t.cashOnly}</p>
             <input
               value={direccion}
               onChange={(e) => setDireccion(e.target.value)}
