@@ -57,9 +57,9 @@
 }
 
 .modal__title {
-  font-size: clamp(28px, 8vw, 50px);
+  font-size: 36px;
   margin: 0;
-  width: 70%;
+  width: 50%;
   background-color: #fffaf2;
   font-family: "Oswald", sans-serif;
   color: #f99b1c;
@@ -70,5 +70,10 @@
 @media (min-width: 768px) {
   .modal__content-div {
     max-width: 480px;
+  }
+
+  .modal__title {
+    font-size: 36px;
+    width: 50%;
   }
 }

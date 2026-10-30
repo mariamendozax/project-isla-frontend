@@ -44,7 +44,6 @@ export default function Hero() {
           alt="Tacos México Lindo y Qué Rico"
           className="hero__logo"
         />
-
         <button className="hero__btn" onClick={() => navigate("/menu")}>
           MENU
         </button>

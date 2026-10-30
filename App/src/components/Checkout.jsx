@@ -9,7 +9,47 @@ function Checkout({ lang, cartItems }) {
   const [coords, setCoords] = useState(null);
   const [errorUbicacion, setErrorUbicacion] = useState("");
   const navigate = useNavigate();
+  const [isConfirmOpen, setIsConfirmOpen] = useState(false);
+  const [isSending, setIsSending] = useState(false);
+  const [isSent, setIsSent] = useState(false);
+  const [error, setError] = useState("");
   const t = textos[lang];
+
+  function buildMessage() {
+    const lines = cart.map(
+      (item) =>
+        `• ${item.quantity}x ${item.name} - $${item.price * item.quantity}`,
+    );
+    return [
+      "🌮 NUEVO PEDIDO",
+      ...lines,
+      `Total: $${total} MXN`,
+      `Tipo: ${deliveryType === "delivery" ? "Entrega" : "Recoger"}`,
+      deliveryType === "delivery" ? `Dirección: ${address}` : "",
+      `Nombre: ${name}`,
+      `Tel: ${phone}`,
+      "Pago: efectivo",
+    ]
+      .filter(Boolean)
+      .join("\n");
+  }
+
+  function handleConfirm() {
+    if (!isOpen()) {
+      setError(t.closedMsg);
+      return;
+    }
+    setIsSending(true);
+    setError("");
+    sendOrder(buildMessage())
+      .then(() => {
+        setIsConfirmOpen(false);
+        setIsSent(true);
+        clearCart();
+      })
+      .catch(() => setError(t.orderError))
+      .finally(() => setIsSending(false));
+  }
 
   function usarUbicacion() {
     if (!navigator.geolocation) {
