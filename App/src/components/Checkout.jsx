@@ -2,16 +2,18 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { textos } from "../data/data";
 import PickupMap from "./PickupMap";
+import Modal from "./Modal";
 
 const WHATSAPP_NUMBER = "52XXXXXXXXXX";
 
-function Checkout({ lang, cartItems }) {
+function Checkout({ lang, setLang, cartItems }) {
   const [modo, setModo] = useState("recoger");
   const [nombre, setNombre] = useState("");
   const [direccion, setDireccion] = useState("");
   const [coords, setCoords] = useState(null);
   const [errorUbicacion, setErrorUbicacion] = useState("");
   const navigate = useNavigate();
+  const [isModalOpen, setIsModalOpen] = useState(true);
   const [aviso, setAviso] = useState("");
   const [pago, setPago] = useState("efectivo");
   const t = textos[lang];
@@ -163,7 +165,12 @@ function Checkout({ lang, cartItems }) {
             </label>
           </>
         )}
-
+        <Modal
+          isOpen={isModalOpen}
+          onClose={() => setIsModalOpen(false)}
+          lang={lang}
+          setLang={setLang}
+        />
         <label>
           <input
             type="radio"

@@ -1,0 +1,38 @@
+.weather-bar {
+  display: block;
+  overflow: hidden;
+  background: #fff7ed;
+  color: #b45309;
+  font-family: "Outfit", sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  padding: 6px 0;
+  text-decoration: none;
+}
+
+.weather-bar__track {
+  display: flex;
+  width: max-content;
+  animation: weather-scroll 20s linear infinite;
+}
+
+.weather-bar__track span {
+  white-space: nowrap;
+  padding-right: 3rem;
+}
+
+@keyframes weather-scroll {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.weather-bar:hover .weather-bar__track {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .weather-bar__track {
+    animation: none;
+  }
+}

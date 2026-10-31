@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import ArticuloMenu from "./ArticuloMenu";
 import { textos, categorias } from "../data/data";
-import Modal from "./Modal";
 
 function Menu({ lang, setLang, cantidadEnCarrito, onAgregar }) {
   const navigate = useNavigate();
@@ -51,12 +50,6 @@ function Menu({ lang, setLang, cantidadEnCarrito, onAgregar }) {
             ))}
           </div>
         ))}
-        <Modal
-          isOpen={isModalOpen}
-          onClose={() => setIsModalOpen(false)}
-          lang={lang}
-          setLang={setLang}
-        />
       </section>
       <footer className="menu__footer">
         <p className="menu__cart" aria-live="polite">
