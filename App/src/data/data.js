@@ -42,6 +42,7 @@ export const textos = {
     card: "Tarjeta",
     cash: "Efectivo",
     cashOnly: "*Sólo efectivo",
+    show: "Mostrar más",
   },
   en: {
     titulo: "México Lindo Isla",
@@ -74,6 +75,7 @@ export const textos = {
     card: "Card",
     cash: "Cash",
     cashOnly: "*Cash only",
+    show: "Show more",
   },
 };
 
