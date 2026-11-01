@@ -1,7 +1,7 @@
 import { useEffect } from "react";
-import { textos, categorias } from "../data/data";
+import { textos } from "../data/data";
 
-function Modal({ lang, setLang, isOpen, onClose, title }) {
+function Modal({ lang, setLang, isOpen, onClose }) {
   const t = textos[lang];
   useEffect(() => {
     if (!isOpen) return;

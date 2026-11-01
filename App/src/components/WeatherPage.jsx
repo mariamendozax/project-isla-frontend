@@ -9,13 +9,7 @@ function WeatherPage({ forecast, isLoading, error, lang }) {
   const t = textos[lang];
 
   if (error) {
-    return (
-      <p className="weather__msg">
-        Lo sentimos, algo ha salido mal durante la solicitud. Es posible que
-        haya un problema de conexión o que el servidor no funcione. Por favor,
-        inténtalo más tarde
-      </p>
-    );
+    return <p className="weather__msg">{t.weatherMsg}</p>;
   }
 
   if (isLoading && forecast.length === 0) {
@@ -23,7 +17,7 @@ function WeatherPage({ forecast, isLoading, error, lang }) {
   }
 
   if (forecast.length === 0) {
-    return <p className="weather__msg">No se ha encontrado nada</p>;
+    return <p className="weather__msg">{t.notFound}</p>;
   }
 
   return (

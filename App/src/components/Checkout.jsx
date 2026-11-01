@@ -21,8 +21,6 @@ function Checkout({ lang, setLang, cartItems }) {
   const total = cartItems.reduce((sum, item) => sum + item.precio, 0);
 
   const nombreValido = nombre.trim().length >= 3;
-  const faltanDatos =
-    !nombreValido || (modo === "entrega" && !direccion.trim() && !coords);
   const pagoFinal = modo === "entrega" ? "efectivo" : pago;
 
   const ZONA_ENTREGA = {

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import Hero from "./Hero.jsx";
 import Menu from "./Menu.jsx";
 import Cart from "./Cart.jsx";
@@ -9,8 +9,8 @@ import WeatherPage from "./WeatherPage.jsx";
 import { getForecast } from "../utils/ThirdPartyApi";
 
 function App() {
-  const [verMenu, setVerMenu] = useState(false);
   const [cartItems, setCartItems] = useState([]);
+  const navigate = useNavigate();
   const [lang, setLang] = useState("es");
 
   const [forecast, setForecast] = useState(() => {

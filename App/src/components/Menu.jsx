@@ -1,13 +1,11 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ArticuloMenu from "./ArticuloMenu";
 import { textos, categorias } from "../data/data";
 
 function Menu({ lang, setLang, cantidadEnCarrito, onAgregar }) {
   const navigate = useNavigate();
-  const [categoria, setCategoria] = useState("todas");
   const [aviso, setAviso] = useState("");
-  const [isModalOpen, setIsModalOpen] = useState(true);
   const t = textos[lang];
 
   return (

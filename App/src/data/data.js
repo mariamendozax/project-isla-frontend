@@ -43,6 +43,9 @@ export const textos = {
     cash: "Efectivo",
     cashOnly: "*Sólo efectivo",
     show: "Mostrar más",
+    weatherMsg:
+      "Lo sentimos, algo ha salido mal durante la solicitud. Es posible que haya un problema de conexión o que el servidor no funcione. Por favor, inténtalo más tarde",
+    notFound: "No se ha encontrado nada",
   },
   en: {
     titulo: "México Lindo Isla",
@@ -76,6 +79,9 @@ export const textos = {
     cash: "Cash",
     cashOnly: "*Cash only",
     show: "Show more",
+    weatherMsg:
+      "We are sorry, something went wrong with your request. There may be a connection issue, or the server might be down. Please try again later.",
+    notFound: "Nothing has been found",
   },
 };
 
