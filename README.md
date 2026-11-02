@@ -1,14 +1,14 @@
 # project-isla-frontend
 
 **_ México Lindo Isla _**
-Una app de pedidos en línea para el negocio de tacos de mi mamá en Isla Mujeres, Quintana , Mexico.
+Una app de pedidos en línea para el negocio de tacos de mi mamá en Isla Mujeres, Quintana Roo, Mexico.
 Proyecto final del bootcamp de desarrollo web de TripleTen, hecho con mucho cariño.
 
 - Motivo de este proyecto
   Isla Mujeres es un lugar turístico, pero aquí no existen plataformas de entrega como las que hay en otras ciudades. Si alguien se antoja de unos tacos, tiene que ir hasta el local o llamar por teléfono y esperar que alguien conteste.
 
 Y detrás de este proyecto hay una persona real: mi mamá.
-Cuando tuve que elegir un proyecto final, quise construir algo que de verdad le sirviera a alguien que conozco. Esta es mi forma de decir: lo que estoy aprendiendo no se queda en el bootcamp, se queda en casa.
+Cuando tuve que elegir un proyecto final, quise construir algo que de verdad le sirviera a alguien que conozco.
 
 ✨ Qué puedes hacer en la app
 Ver el menú por categorías (tacos, tortas, especialidades, desayunos) y agregar extras a cada platillo.

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Routes, Route, useNavigate } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Hero from "./Hero.jsx";
 import Menu from "./Menu.jsx";
 import Cart from "./Cart.jsx";
@@ -7,10 +7,10 @@ import Checkout from "./Checkout.jsx";
 import WeatherBar from "./WeatherBar.jsx";
 import WeatherPage from "./WeatherPage.jsx";
 import { getForecast } from "../utils/ThirdPartyApi";
+import { ISLA_LAT, ISLA_LON } from "../utils/constants.js";
 
 function App() {
   const [cartItems, setCartItems] = useState([]);
-  const navigate = useNavigate();
   const [lang, setLang] = useState("es");
 
   const [forecast, setForecast] = useState(() => {
@@ -24,7 +24,7 @@ function App() {
   const [error, setError] = useState(false);
 
   useEffect(() => {
-    getForecast(21.23, -86.73)
+    getForecast(ISLA_LAT, ISLA_LON)
       .then((days) => {
         setForecast(days);
         localStorage.setItem("forecast", JSON.stringify(days));
@@ -45,7 +45,7 @@ function App() {
 
   return (
     <Routes>
-      <Route path="/" element={<Hero onEnter={() => navigate("/menu")} />} />
+      <Route path="/" element={<Hero />} />
       <Route
         path="/menu"
         element={

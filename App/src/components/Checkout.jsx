@@ -3,8 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { textos } from "../data/data";
 import PickupMap from "./PickupMap";
 import Modal from "./Modal";
-
-const WHATSAPP_NUMBER = "52XXXXXXXXXX";
+import { WHATSAPP_NUMBER, DELIVERY_ZONE } from "../utils/constants.js";
 
 function Checkout({ lang, setLang, cartItems }) {
   const [modo, setModo] = useState("recoger");
@@ -23,19 +22,12 @@ function Checkout({ lang, setLang, cartItems }) {
   const nombreValido = nombre.trim().length >= 3;
   const pagoFinal = modo === "entrega" ? "efectivo" : pago;
 
-  const ZONA_ENTREGA = {
-    latMax: 21.259818192336063, // norte
-    latMin: 21.253412270929463, // sur
-    lngMin: -86.75144213545913, // oeste
-    lngMax: -86.74435614788142, // este
-  };
-
   function dentroDeZona({ lat, lng }) {
     return (
-      lat <= ZONA_ENTREGA.latMax &&
-      lat >= ZONA_ENTREGA.latMin &&
-      lng >= ZONA_ENTREGA.lngMin &&
-      lng <= ZONA_ENTREGA.lngMax
+      lat <= DELIVERY_ZONE.latMax &&
+      lat >= DELIVERY_ZONE.latMin &&
+      lng >= DELIVERY_ZONE.lngMin &&
+      lng <= DELIVERY_ZONE.lngMax
     );
   }
 

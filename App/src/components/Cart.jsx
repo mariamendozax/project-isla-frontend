@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { isOpen } from "../utils/Schedule";
 import { textos } from "../data/data";
+import { CART_REFRESH_MS } from "../utils/constants.js";
 
 function Cart({ lang, cartItems, onRemoveItem }) {
   const total = cartItems.reduce((sum, item) => sum + item.precio, 0);
@@ -11,7 +12,7 @@ function Cart({ lang, cartItems, onRemoveItem }) {
   const [showClosedModal, setShowClosedModal] = useState(false);
 
   useEffect(() => {
-    const id = setInterval(() => setOpen(isOpen()), 60000);
+    const id = setInterval(() => setOpen(isOpen()), CART_REFRESH_MS);
     return () => clearInterval(id);
   }, []);
 

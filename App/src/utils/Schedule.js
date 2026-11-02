@@ -1,6 +1,4 @@
-const OPEN_HOUR = 9;
-const CLOSE_HOUR = 17;
-const DAY_OFF = "Mon";
+import { OPEN_HOUR, CLOSE_HOUR, DAY_OFF } from "./constants.js";
 
 export function isOpen(now = new Date()) {
   const parts = new Intl.DateTimeFormat("en-US", {

@@ -1,0 +1,75 @@
+.weather__title {
+  font-family: "Outfit", sans-serif;
+  text-align: center;
+  color: #f99b1c;
+  background: #fffaf2;
+}
+
+.weather__grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 0;
+  list-style: none;
+  justify-content: center;
+}
+
+.weather__card {
+  flex: 0 1 calc((100% - 24px) / 3);
+  min-width: 140px;
+  background: #fff7ed;
+  border-radius: 12px;
+  padding: 12px;
+  font-family: "Outfit", sans-serif;
+  text-align: center;
+}
+
+.weather__icon {
+  font-size: 2rem;
+}
+
+.weather__msg {
+  padding: 24px;
+  text-align: center;
+}
+
+.preloader {
+  width: 48px;
+  height: 48px;
+  margin: 40px auto;
+  border: 5px solid #fde7c8;
+  border-top-color: #f59a1f;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+.weather__actions {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 25px;
+  margin: 25px auto;
+}
+
+.weather__btn {
+  min-height: 42px;
+  padding: 0 18px;
+  border: 0;
+  border-radius: 6px;
+  background: #fcb045;
+  color: #fffaf2;
+  cursor: pointer;
+  font-family: "Outfit", sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    background-color 0.2s ease;
+}
+
+.weather__btn:hover {
+  transform: translateY(-1px);
+  background: #f99b1c;
+  box-shadow: 0 6px 18px rgb(252 176 69 / 35%);
+}
