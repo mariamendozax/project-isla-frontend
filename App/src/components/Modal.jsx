@@ -1,8 +1,7 @@
 import { useEffect } from "react";
 import { textos } from "../data/data";
 
-function Modal({ lang, setLang, isOpen, onClose }) {
-  const t = textos[lang];
+function Modal({ isOpen, onClose, children, variant = "alert" }) {
   useEffect(() => {
     if (!isOpen) return;
     const handleEsc = (e) => e.key === "Escape" && onClose();
@@ -12,16 +11,16 @@ function Modal({ lang, setLang, isOpen, onClose }) {
 
   if (!isOpen) return null;
 
-  return (
-    <div className="modal__overlay" onClick={onClose}>
-      <div className="modal__content-div" onClick={(e) => e.stopPropagation()}>
-        <div className="modal__content">
-          <button
-            className="hero__lang-modal"
-            onClick={() => setLang(lang === "es" ? "en" : "es")}
-          >
-            {lang === "es" ? "EN" : "ES"}
-          </button>
+  if (variant === "wide") {
+    return (
+      <div className="modal__overlay" onClick={onClose}>
+        <div
+          className="modal__content-div"
+          role="dialog"
+          aria-modal="true"
+          onClick={(e) => e.stopPropagation()}
+        >
+          <div className="modal__content">{children}</div>
           <button
             className="modal__close"
             onClick={onClose}
@@ -29,9 +28,27 @@ function Modal({ lang, setLang, isOpen, onClose }) {
           >
             ✕
           </button>
-
-          <h2 className="modal__title">{t.modalMsg}</h2>
         </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="modal" onClick={onClose}>
+      <div
+        className="modal__box"
+        role="dialog"
+        aria-modal="true"
+        onClick={(e) => e.stopPropagation()}
+      >
+        {children}
+        <button
+          className="modal__close-aviso"
+          onClick={onClose}
+          aria-label="Cerrar"
+        >
+          ✕
+        </button>
       </div>
     </div>
   );

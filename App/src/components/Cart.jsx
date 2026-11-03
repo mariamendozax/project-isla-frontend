@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { isOpen } from "../utils/Schedule";
 import { textos } from "../data/data";
 import { CART_REFRESH_MS } from "../utils/constants.js";
+import Modal from "./Modal";
 
 function Cart({ lang, cartItems, onRemoveItem }) {
   const total = cartItems.reduce((sum, item) => sum + item.precio, 0);
@@ -94,8 +95,8 @@ function Cart({ lang, cartItems, onRemoveItem }) {
 
                 {item.extras?.length > 0 && (
                   <ul className="cart__extras">
-                    {item.extras.map((extra, index) => (
-                      <li key={index}>
+                    {item.extras.map((extra) => (
+                      <li key={extra.nombre}>
                         + {extra.nombre} ${extra.precio}
                       </li>
                     ))}
@@ -116,24 +117,20 @@ function Cart({ lang, cartItems, onRemoveItem }) {
           >
             {t.volver}
           </button>
-          {showClosedModal && (
-            <div className="modal" onClick={() => setShowClosedModal(false)}>
-              <div
-                className="modal__box"
-                role="dialog"
-                aria-modal="true"
-                onClick={(e) => e.stopPropagation()}
-              >
-                <p>{t.closedMsg}</p>
-                <button
-                  className="menu__btn"
-                  onClick={() => setShowClosedModal(false)}
-                >
-                  OK
-                </button>
-              </div>
-            </div>
-          )}
+          <Modal
+            isOpen={showClosedModal}
+            onClose={() => setShowClosedModal(false)}
+            closeLabel={t.close}
+          >
+            <p>{t.closedMsg}</p>
+            <button
+              className="menu__btn"
+              type="button"
+              onClick={() => setShowClosedModal(false)}
+            >
+              OK
+            </button>
+          </Modal>
           <button
             className={`cart__checkout ${!open ? "cart__checkout--closed" : ""}`}
             onClick={handleNext}

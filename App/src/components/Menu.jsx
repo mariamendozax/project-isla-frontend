@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ArticuloMenu from "./ArticuloMenu";
 import { textos, categorias } from "../data/data";
+import Modal from "./Modal";
 
 function Menu({ lang, setLang, cantidadEnCarrito, onAgregar }) {
   const navigate = useNavigate();
@@ -63,25 +64,20 @@ function Menu({ lang, setLang, cantidadEnCarrito, onAgregar }) {
         </button>
       </footer>
 
-      {aviso && (
-        <div
-          className="modal"
-          role="alertdialog"
-          aria-modal="true"
+      <Modal
+        isOpen={!!aviso}
+        onClose={() => setAviso("")}
+        closeLabel={t.closedMsg}
+      >
+        <p>{aviso}</p>
+        <button
+          className="menu__btn"
+          type="button"
           onClick={() => setAviso("")}
         >
-          <div className="modal__box" onClick={(e) => e.stopPropagation()}>
-            <p>{aviso}</p>
-            <button
-              className="menu__btn"
-              type="button"
-              onClick={() => setAviso("")}
-            >
-              OK
-            </button>
-          </div>
-        </div>
-      )}
+          OK
+        </button>
+      </Modal>
     </main>
   );
 }

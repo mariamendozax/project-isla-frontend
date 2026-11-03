@@ -48,6 +48,7 @@ export const textos = {
     notFound: "No se ha encontrado nada",
     weatherTitle: "Clima Isla Mujeres",
     loading: "Cargando",
+    addressPlaceholder: "Calle, número, colonia",
   },
   en: {
     titulo: "México Lindo Isla",
@@ -86,6 +87,7 @@ export const textos = {
     notFound: "Nothing has been found",
     weatherTitle: "Isla Mujeres Weather",
     loading: "Loading",
+    addressPlaceholder: "Street, number, neighborhood",
   },
 };
 

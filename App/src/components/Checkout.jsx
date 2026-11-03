@@ -67,9 +67,7 @@ function Checkout({ lang, setLang, cartItems }) {
         : "",
       `Nombre: ${nombre.trim()}`,
       `Pago: ${pagoFinal === "tarjeta" ? "Tarjeta" : "Efectivo"}`,
-    ]
-      .filter((line) => line !== "" || true)
-      .join("\n");
+    ].join("\n");
   }
 
   function handleSendWhatsApp() {
@@ -117,6 +115,8 @@ function Checkout({ lang, setLang, cartItems }) {
     <section className="checkout">
       <div className="checkout__div">
         <input
+          id="nombre"
+          name="nombre"
           value={nombre}
           onChange={(e) => setNombre(e.target.value)}
           placeholder={t.name}
@@ -128,6 +128,8 @@ function Checkout({ lang, setLang, cartItems }) {
         )}
         <label>
           <input
+            id="pickup"
+            name="entrega"
             type="radio"
             checked={modo === "recoger"}
             onChange={() => setModo("recoger")}
@@ -139,6 +141,8 @@ function Checkout({ lang, setLang, cartItems }) {
             <PickupMap lang={lang} />
             <label>
               <input
+                id="cash"
+                name="payment"
                 type="radio"
                 checked={pago === "efectivo"}
                 onChange={() => setPago("efectivo")}
@@ -147,6 +151,8 @@ function Checkout({ lang, setLang, cartItems }) {
             </label>
             <label>
               <input
+                id="card"
+                name="payment"
                 type="radio"
                 checked={pago === "tarjeta"}
                 onChange={() => setPago("tarjeta")}
@@ -155,14 +161,10 @@ function Checkout({ lang, setLang, cartItems }) {
             </label>
           </>
         )}
-        <Modal
-          isOpen={isModalOpen}
-          onClose={() => setIsModalOpen(false)}
-          lang={lang}
-          setLang={setLang}
-        />
         <label>
           <input
+            id="delivery"
+            name="entrega"
             type="radio"
             checked={modo === "entrega"}
             onChange={() => setModo("entrega")}
@@ -173,9 +175,13 @@ function Checkout({ lang, setLang, cartItems }) {
           <>
             <p>{t.cashOnly}</p>
             <input
+              id="direccion"
+              name="direccion"
               value={direccion}
               onChange={(e) => setDireccion(e.target.value)}
-              placeholder="Calle, número, colonia"
+              placeholder={t.addressPlaceholder}
+              required={modo === "entrega"}
+              autoComplete="street-address"
             />
             <button className="cart__btn" type="button" onClick={usarUbicacion}>
               📍 {t.useUbi}
@@ -193,25 +199,33 @@ function Checkout({ lang, setLang, cartItems }) {
         </button>
       </div>
 
-      {aviso && (
-        <div
-          className="modal"
-          role="alertdialog"
-          aria-modal="true"
+      <Modal isOpen={!!aviso} onClose={() => setAviso("")} closeLabel={t.close}>
+        <p>{aviso}</p>
+        <button
+          className="menu__btn"
+          type="button"
           onClick={() => setAviso("")}
         >
-          <div className="modal__box" onClick={(e) => e.stopPropagation()}>
-            <p>{aviso}</p>
-            <button
-              className="menu__btn"
-              type="button"
-              onClick={() => setAviso("")}
-            >
-              OK
-            </button>
-          </div>
-        </div>
-      )}
+          OK
+        </button>
+      </Modal>
+
+      <Modal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        closeLabel={t.close}
+        variant="wide"
+      >
+        <button
+          className="hero__lang-modal"
+          type="button"
+          onClick={() => setLang(lang === "es" ? "en" : "es")}
+        >
+          {lang === "es" ? "EN" : "ES"}
+        </button>
+
+        <h2 className="modal__title">{t.modalMsg}</h2>
+      </Modal>
     </section>
   );
 }

@@ -186,6 +186,26 @@
   }
 }
 
+@media (max-width: 320px) {
+  .cart__btn-section {
+    flex-direction: column;
+  }
+
+  .cart__back-btn,
+  .cart__checkout {
+    box-sizing: border-box;
+    width: 100%;
+  }
+
+  .cart__checkout {
+    min-width: 0;
+    margin-top: 10px;
+    margin-left: 0;
+    padding-right: 12px;
+    padding-left: 12px;
+  }
+}
+
 @media (min-width: 768px) {
   .cart__btn-section {
     display: flex;
