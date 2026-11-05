@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import { textos } from "../data/data";
 
 function Modal({ isOpen, onClose, children, variant = "alert" }) {
   useEffect(() => {
