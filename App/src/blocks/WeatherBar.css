@@ -21,6 +21,12 @@
   padding-right: 3rem;
 }
 
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 @keyframes weather-scroll {
   to {
     transform: translateX(-50%);

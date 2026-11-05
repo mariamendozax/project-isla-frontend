@@ -1,13 +1,12 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ArticuloMenu from "./ArticuloMenu";
 import { textos, categorias } from "../data/data";
+import Modal from "./Modal";
 
 function Menu({ lang, setLang, cantidadEnCarrito, onAgregar }) {
   const navigate = useNavigate();
-  const [categoria, setCategoria] = useState("todas");
   const [aviso, setAviso] = useState("");
-  const [isModalOpen, setIsModalOpen] = useState(true);
   const t = textos[lang];
 
   return (
@@ -65,25 +64,20 @@ function Menu({ lang, setLang, cantidadEnCarrito, onAgregar }) {
         </button>
       </footer>
 
-      {aviso && (
-        <div
-          className="modal"
-          role="alertdialog"
-          aria-modal="true"
+      <Modal
+        isOpen={!!aviso}
+        onClose={() => setAviso("")}
+        closeLabel={t.closedMsg}
+      >
+        <p>{aviso}</p>
+        <button
+          className="menu__btn"
+          type="button"
           onClick={() => setAviso("")}
         >
-          <div className="modal__box" onClick={(e) => e.stopPropagation()}>
-            <p>{aviso}</p>
-            <button
-              className="menu__btn"
-              type="button"
-              onClick={() => setAviso("")}
-            >
-              OK
-            </button>
-          </div>
-        </div>
-      )}
+          OK
+        </button>
+      </Modal>
     </main>
   );
 }

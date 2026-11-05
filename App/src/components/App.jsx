@@ -5,19 +5,32 @@ import Menu from "./Menu.jsx";
 import Cart from "./Cart.jsx";
 import Checkout from "./Checkout.jsx";
 import WeatherBar from "./WeatherBar.jsx";
+import WeatherPage from "./WeatherPage.jsx";
 import { getForecast } from "../utils/ThirdPartyApi";
+import { ISLA_LAT, ISLA_LON } from "../utils/constants.js";
 
 function App() {
-  const [verMenu, setVerMenu] = useState(false);
   const [cartItems, setCartItems] = useState([]);
   const [lang, setLang] = useState("es");
 
-  const [forecast, setForecast] = useState(null);
+  const [forecast, setForecast] = useState(() => {
+    try {
+      return JSON.parse(localStorage.getItem("forecast")) ?? [];
+    } catch {
+      return [];
+    }
+  });
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
-    getForecast(21.23, -86.73)
-      .then((data) => setForecast(data.daily))
-      .catch((err) => console.error(err));
+    getForecast(ISLA_LAT, ISLA_LON)
+      .then((days) => {
+        setForecast(days);
+        localStorage.setItem("forecast", JSON.stringify(days));
+      })
+      .catch(() => setError(true))
+      .finally(() => setIsLoading(false));
   }, []);
 
   const handleAddItem = (item) => {
@@ -32,7 +45,7 @@ function App() {
 
   return (
     <Routes>
-      <Route path="/" element={<Hero onEnter={() => navigate("/menu")} />} />
+      <Route path="/" element={<Hero />} />
       <Route
         path="/menu"
         element={
@@ -61,6 +74,17 @@ function App() {
         path="/checkout"
         element={
           <Checkout lang={lang} setLang={setLang} cartItems={cartItems} />
+        }
+      />
+      <Route
+        path="/clima"
+        element={
+          <WeatherPage
+            forecast={forecast}
+            isLoading={isLoading}
+            error={error}
+            lang={lang}
+          />
         }
       />
     </Routes>

@@ -9,7 +9,7 @@ html {
 }
 
 .menu__header {
-  background-image: url("/images/collage.png");
+  background-image: url("../../images/collage.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -144,6 +144,7 @@ html {
   border-radius: 6px;
   background: #fcb045;
   color: #3b2418;
+  font-family: "Outfit", sans-serif;
   cursor: pointer;
   font: inherit;
   font-weight: 600;
@@ -156,23 +157,6 @@ html {
 .menu__btn:focus-visible {
   outline: 3px solid #a84419;
   outline-offset: 3px;
-}
-
-.modal {
-  position: fixed;
-  inset: 0;
-  display: grid;
-  place-items: center;
-  background: rgb(59 36 24 / 50%);
-  z-index: 10;
-}
-
-.modal__box {
-  background: #fff;
-  padding: 20px;
-  border-radius: 12px;
-  max-width: 280px;
-  text-align: center;
 }
 
 .menu__footer {
@@ -237,6 +221,42 @@ html {
     box-shadow:
       0 8px 24px rgb(252 176 69 / 45%),
       0 0 0 1px rgb(252 176 69 / 60%);
+  }
+}
+
+@media (max-width: 320px) {
+  .menu__title {
+    max-width: calc(100% - 56px);
+    font-size: 28px;
+  }
+
+  .menu__footer {
+    justify-content: space-between;
+    padding: 14px 12px;
+  }
+
+  .menu__cart {
+    flex: 1;
+    min-width: 0;
+    margin-top: 6px;
+    font-size: 16px;
+  }
+
+  .cart__menu-btn {
+    display: grid;
+    flex: 0 0 118px;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    box-sizing: border-box;
+    width: 118px;
+    min-height: 40px;
+    margin-right: 0;
+    padding: 0 8px;
+    column-gap: 4px;
+  }
+
+  .cart__menu-btn .button-text {
+    text-align: center;
   }
 }
 

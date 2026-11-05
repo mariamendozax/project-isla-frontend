@@ -4,3 +4,18 @@
 @import url("./blocks/Checkout.css");
 @import url("./blocks/Modal.css");
 @import url("./blocks/WeatherBar.css");
+@import url("./blocks/WeatherPage.css");
+
+@font-face {
+  font-family: "Outfit";
+  src: url("./fonts/Outfit-Variable.woff2") format("woff2");
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Oswald";
+  src: url("./fonts/Oswald-VariableFont.woff2") format("woff2");
+  font-weight: 200 700;
+  font-display: swap;
+}

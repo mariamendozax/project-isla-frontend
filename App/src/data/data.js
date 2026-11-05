@@ -42,6 +42,13 @@ export const textos = {
     card: "Tarjeta",
     cash: "Efectivo",
     cashOnly: "*Sólo efectivo",
+    show: "Mostrar más",
+    weatherMsg:
+      "Lo sentimos, algo ha salido mal durante la solicitud. Es posible que haya un problema de conexión o que el servidor no funcione. Por favor, inténtalo más tarde",
+    notFound: "No se ha encontrado nada",
+    weatherTitle: "Clima Isla Mujeres",
+    loading: "Cargando",
+    addressPlaceholder: "Calle, número, colonia",
   },
   en: {
     titulo: "México Lindo Isla",
@@ -74,6 +81,13 @@ export const textos = {
     card: "Card",
     cash: "Cash",
     cashOnly: "*Cash only",
+    show: "Show more",
+    weatherMsg:
+      "We are sorry, something went wrong with your request. There may be a connection issue, or the server might be down. Please try again later.",
+    notFound: "Nothing has been found",
+    weatherTitle: "Isla Mujeres Weather",
+    loading: "Loading",
+    addressPlaceholder: "Street, number, neighborhood",
   },
 };
 

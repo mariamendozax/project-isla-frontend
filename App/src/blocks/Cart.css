@@ -122,8 +122,9 @@
   border-radius: 6px;
   background: #fcb045;
   color: #fffaf2;
+  font-size: 16px;
   cursor: pointer;
-  font: inherit;
+  font-family: "Outfit", sans-serif;
   font-weight: 600;
   transition:
     transform 0.25s ease,
@@ -182,6 +183,26 @@
 
   .cart__remove-btn {
     margin-left: auto;
+  }
+}
+
+@media (max-width: 320px) {
+  .cart__btn-section {
+    flex-direction: column;
+  }
+
+  .cart__back-btn,
+  .cart__checkout {
+    box-sizing: border-box;
+    width: 100%;
+  }
+
+  .cart__checkout {
+    min-width: 0;
+    margin-top: 10px;
+    margin-left: 0;
+    padding-right: 12px;
+    padding-left: 12px;
   }
 }
 

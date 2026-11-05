@@ -8,7 +8,7 @@ import quesabirria from "../../images/quesabirria.png";
 import veggie from "../../images/veggie.png";
 import flautas from "../../images/flautas.png";
 import mix from "../../images/mix.png";
-import logo from "../../images/logo.png";
+import Logo from "../../images/Logo.png";
 
 const fotos = [
   { src: barbacoa, alt: "Tacos de barbacoa" },
@@ -40,7 +40,7 @@ export default function Hero() {
       </div>
       <div className="hero__container">
         <img
-          src={logo}
+          src={Logo}
           alt="Tacos México Lindo y Qué Rico"
           className="hero__logo"
         />
