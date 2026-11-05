@@ -17,8 +17,10 @@ function Checkout({ lang, setLang, cartItems }) {
   const [pago, setPago] = useState("efectivo");
   const t = textos[lang];
 
-  const total = cartItems.reduce((sum, item) => sum + item.precio, 0);
-
+  const subtotal = cartItems.reduce((sum, item) => sum + item.precio, 0);
+  const COSTO_ENVIO = 25;
+  const envio = modo === "entrega" ? COSTO_ENVIO : 0;
+  const total = subtotal + envio;
   const nombreValido = nombre.trim().length >= 3;
   const pagoFinal = modo === "entrega" ? "efectivo" : pago;
 
@@ -55,18 +57,21 @@ function Checkout({ lang, setLang, cartItems }) {
     });
 
     return [
-      "🌮 *NUEVO PEDIDO*",
+      "NUEVO PEDIDO",
       "",
       ...lines,
       "",
-      `*Total: $${total} MXN*`,
-      `Tipo: ${modo === "entrega" ? "Entrega" : "Recoger"}`,
+      ...(modo === "entrega"
+        ? [`Subtotal: $${subtotal} MXN`, `Envío: $${envio} MXN`]
+        : []),
+      ` /Total: $${total} MXN`,
+      ` /Tipo: ${modo === "entrega" ? "Entrega" : "Recoger"}`,
       modo === "entrega" ? `Dirección: ${direccion}` : "",
       modo === "entrega" && coords
         ? `Ubicación: https://maps.google.com/?q=${coords.lat},${coords.lng}`
         : "",
-      `Nombre: ${nombre.trim()}`,
-      `Pago: ${pagoFinal === "tarjeta" ? "Tarjeta" : "Efectivo"}`,
+      ` /Nombre: ${nombre.trim()}`,
+      ` /Pago: ${pagoFinal === "tarjeta" ? "Tarjeta" : "Efectivo"}`,
     ].join("\n");
   }
 
@@ -174,6 +179,7 @@ function Checkout({ lang, setLang, cartItems }) {
         {modo === "entrega" && (
           <>
             <p>{t.cashOnly}</p>
+            <p>Envío: ${COSTO_ENVIO} MXN</p>
             <input
               id="direccion"
               name="direccion"
@@ -190,7 +196,7 @@ function Checkout({ lang, setLang, cartItems }) {
             {errorUbicacion && <p>{errorUbicacion}</p>}
           </>
         )}
-
+        <p>Total: ${total} MXN</p>
         <button className="cart__btn-sent" onClick={handleSendWhatsApp}>
           {t.sendWa}
         </button>
