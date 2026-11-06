@@ -38,7 +38,8 @@ export const textos = {
     sendWa: "Enviar orden",
     nameError: "Ingresa un nombre con al menos 3 letras",
     addressError: "Dirección inválida",
-    outOfZone: "Fuera del área de rango",
+    outOfZone:
+      "Lo sentimos, estás fuera del área de rango, puedes recogerlo en nuestro local",
     card: "Tarjeta",
     cash: "Efectivo",
     cashOnly: "*Sólo efectivo",
@@ -77,7 +78,8 @@ export const textos = {
     sendWa: "Send order",
     nameError: "Enter a name with at least 3 letters",
     addressError: "Invalid address",
-    outOfZone: "Out of range",
+    outOfZone:
+      "We're sorry, it is out of range. You can pick it up at our store",
     card: "Card",
     cash: "Cash",
     cashOnly: "*Cash only",
