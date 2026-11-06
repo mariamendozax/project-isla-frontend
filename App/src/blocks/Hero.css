@@ -1,6 +1,16 @@
+html,
+body {
+  margin: 0;
+}
+img {
+  display: block;
+  max-width: 100%;
+}
+
 .hero {
   position: relative;
   min-height: 100vh;
+  min-height: 100svh;
   overflow: hidden;
 }
 
